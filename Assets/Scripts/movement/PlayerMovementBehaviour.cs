@@ -13,10 +13,15 @@ public class PlayerMovementBehaviour : MonoBehaviour
     [SerializeField]
     private Camera _camera;
     private Vector2 _move;
+    private Vector2 _look;
 
     public void onMove(InputAction.CallbackContext ctx) 
     {
         _move = ctx.ReadValue<Vector2>();
+    }
+    public void onLook(InputAction.CallbackContext ctx)
+    {
+        _look = ctx.ReadValue<Vector2>();
     }
     // Start is called before the first frame update
     void Start()
@@ -28,7 +33,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     void Update()
     {
         Move(_move);
-        Look(_camera.ScreenPointToRay(Mouse.current.position.ReadValue()));
+        Look(_camera.ScreenPointToRay(_look));
     }
     void Move(Vector2 dir)
     {
