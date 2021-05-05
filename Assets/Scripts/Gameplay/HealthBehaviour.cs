@@ -16,7 +16,7 @@ public class HealthBehaviour : MonoBehaviour
     /// Subtracts the given damage value from health
     /// </summary>
     /// <param name="damage"></param>
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         _health -= damage;
 
