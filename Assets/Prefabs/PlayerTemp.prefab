@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &215594274432525087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7273575155330027984}
+  - component: {fileID: 5544640225652835950}
+  m_Layer: 0
+  m_Name: BulletEmmttter
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7273575155330027984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215594274432525087}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.07999999, y: 0, z: 0.4799999}
+  m_LocalScale: {x: 6.3181167, y: 6.3181167, z: 2.106039}
+  m_Children: []
+  m_Father: {fileID: 8753410322481184172}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5544640225652835950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215594274432525087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05740e1feed2a7143b4f0a0940b60ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 0}
 --- !u!1 &3936308268752070541
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,13 +163,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5483044329855537979}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17, z: 0.96}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: 0, y: 0.41, z: 0.96}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1.5}
-  m_Children: []
+  m_Children:
+  - {fileID: 7273575155330027984}
   m_Father: {fileID: 8333372282101094897}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!33 &9016921621615301988
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -182,7 +227,7 @@ BoxCollider:
   m_GameObject: {fileID: 5483044329855537979}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -293,7 +338,7 @@ GameObject:
   - component: {fileID: 5966947088468047760}
   - component: {fileID: 5966947088468047761}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turrent: {fileID: 8333372282101094897}
   _speed: 15
+  _camera: {fileID: 0}
 --- !u!114 &5966947088468047761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +432,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5669c30f-3784-4a86-89d4-24e9d2605ef6
     m_ActionName: Player/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bec9ac3c-3a2b-42d9-8508-d8511f0d1e15
+    m_ActionName: Player/Look[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 194975b3-cecf-4311-a5bd-feffa9f8dcaf
+    m_ActionName: Player/Fire[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
