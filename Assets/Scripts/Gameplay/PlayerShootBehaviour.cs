@@ -11,6 +11,7 @@ public class PlayerShootBehaviour : MonoBehaviour
     private float _fireForce = 10;
     public void onFire(InputAction.CallbackContext ctx)
     {
-        _emitterBehaviour.Fire(_emitterBehaviour.transform.forward * _fireForce);
+        if(ctx.performed)
+            _emitterBehaviour.Fire(_emitterBehaviour.transform.forward * _fireForce);
     }
 }

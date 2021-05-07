@@ -191,9 +191,20 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""90a47fa2-3417-4042-bdb5-3d8c29f14696"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""keyboard and mouse"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9ae1f30-f86a-4793-993d-b5679c182ea0"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

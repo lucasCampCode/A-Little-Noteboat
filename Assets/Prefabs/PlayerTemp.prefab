@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05740e1feed2a7143b4f0a0940b60ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 1293817257619794346, guid: aab75c1e6ae8c194c8448b9673ed8d9d, type: 3}
 --- !u!1 &3936308268752070541
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 636742271771360133}
   - component: {fileID: 5966947088468047760}
   - component: {fileID: 5966947088468047761}
+  - component: {fileID: 950431010}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Untagged
@@ -389,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turrent: {fileID: 8333372282101094897}
-  _speed: 15
+  _speed: 20
   _camera: {fileID: 0}
 --- !u!114 &5966947088468047761
 MonoBehaviour:
@@ -433,15 +434,51 @@ MonoBehaviour:
     m_ActionId: 5669c30f-3784-4a86-89d4-24e9d2605ef6
     m_ActionName: Player/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5966947088468047760}
+        m_MethodName: onLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bec9ac3c-3a2b-42d9-8508-d8511f0d1e15
     m_ActionName: Player/Look[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 950431010}
+        m_MethodName: onFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 194975b3-cecf-4311-a5bd-feffa9f8dcaf
-    m_ActionName: Player/Fire[/Mouse/leftButton]
+    m_ActionName: Player/Fire
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &950431010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7877359688291133719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979ec164d2a7c53428e792727dd06310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _emitterBehaviour: {fileID: 5544640225652835950}
+  _fireForce: 20
