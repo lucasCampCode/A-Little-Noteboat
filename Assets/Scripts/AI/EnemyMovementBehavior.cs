@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyMovementBehavior : MonoBehaviour
 {
     enum Progress { FIRSTLOOP = 1, WAITSPOT = 2, SECONDLOOP = 3, EXIT = 4, DESTROY = 5 };
