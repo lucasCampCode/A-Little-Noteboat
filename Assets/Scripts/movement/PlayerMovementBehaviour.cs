@@ -6,15 +6,18 @@ using UnityEngine.InputSystem;
 public class PlayerMovementBehaviour : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    [Tooltip("the turrent that the mouse will me looking at")]
     [SerializeField]
     private Transform _turrent;
+    [Tooltip("the speed which the player will go")]
     [SerializeField]
     private float _speed = 1;
     [SerializeField]
     private Camera _camera;
+
     private Vector2 _move;
     private Vector2 _look;
-
+    //
     public void onMove(InputAction.CallbackContext ctx) 
     {
         _move = ctx.ReadValue<Vector2>();
@@ -23,6 +26,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     {
         _look = ctx.ReadValue<Vector2>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
         Move(_move);
         Look(_camera.ScreenPointToRay(_look));
     }
+
     void Move(Vector2 dir)
     {
         Vector3 move = new Vector3(dir.x, 0, dir.y) * _speed * Time.deltaTime;
