@@ -44,7 +44,6 @@ public class PlayerMovementBehaviour : MonoBehaviour
     void Update()
     {
         Move(_move);
-        Look(_camera.ScreenPointToRay(_look));
     }
     /// <summary>
     /// updates the movement to the prefab
