@@ -9,6 +9,10 @@ public class PlayerShootBehaviour : MonoBehaviour
     private BulletEmitterBehaviour _emitterBehaviour;
     [SerializeField]
     private float _fireForce = 10;
+    /// <summary>
+    /// when the user uses a fire key it fires a bullet
+    /// </summary>
+    /// <param name="ctx"></param>
     public void onFire(InputAction.CallbackContext ctx)
     {
         if(ctx.performed)
