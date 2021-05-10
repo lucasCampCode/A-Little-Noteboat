@@ -43,8 +43,8 @@ public class PlayerMovementBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // updates movement
         Move(_move);
-        Look(_camera.ScreenPointToRay(_look));
     }
     /// <summary>
     /// updates the movement to the prefab
@@ -63,9 +63,8 @@ public class PlayerMovementBehaviour : MonoBehaviour
     void Look(Ray mouse) 
     {
         RaycastHit hit;
+
         if(Physics.Raycast(mouse,out hit))
-        {
             _turrent.LookAt(new Vector3(hit.point.x, _turrent.position.y, hit.point.z));
-        }
     }
 }
