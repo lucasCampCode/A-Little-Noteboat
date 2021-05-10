@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof (NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyMovementBehavior : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class EnemyMovementBehavior : MonoBehaviour
     private int _progress = (int)Progress.FIRSTLOOP;
 
     private float _timeToWait;
-
     private float _timeOnLoop1 = 0;
     private float _timeOnSitSpot = 0;
     private float _timeOnLoop2 = 0;
