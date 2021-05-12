@@ -12,7 +12,8 @@ public class enemyShootBehaviour : MonoBehaviour
     private float _speed = 5;
     [SerializeField]
     private float _timePerShoot = 2;
-
+    [SerializeField]
+    private float _angleOfAttack = 0.5f;
     private float _time;
 
     public GameObject Target
@@ -24,12 +25,15 @@ public class enemyShootBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = (_target.transform.position - transform.position).normalized;
-
-        _time += Time.deltaTime;
-        if (_time > _timePerShoot)
+        float attackAngle = Vector3.Dot(direction, transform.forward);
+        if (_angleOfAttack < attackAngle)
         {
-            _bulletEmitter.Fire(direction * _speed);
-            _time = 0;
+            _time += Time.deltaTime;
+            if (_time > _timePerShoot)
+            {
+                _bulletEmitter.Fire(direction * _speed);
+                _time = 0;
+            }
         }
     }
 }
