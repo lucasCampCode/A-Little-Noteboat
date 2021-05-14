@@ -4,34 +4,39 @@ using UnityEngine;
 
 public class SpawnerBehavior : MonoBehaviour
 {
-    [Tooltip("The time between spawns while between waves")]
-    [SerializeField] private float _calmSpawnTime = 4;
-    [Tooltip("The time between spawns during waves")]
-    [SerializeField] private float _waveSpawnTime = 1;
-
-    [Tooltip("Whether or not the game is currently in a wave")]
-    private bool _inWave = false;
     [Tooltip("Time in seconds between spawns")]
     private float _timeBetweenSpawns;
-    [Tooltip("The time between waves of enemies")]
-    [SerializeField] private float _timeBetweenWaves;
-    [Tooltip("How long the spawner will spawn enemies more often")]
-    private float _waveDuration = 4;
+
+    //Wave related
+    //Informational
+    [Tooltip("Whether or not the game is currently in a wave")]
+    private bool _inWave = false;
     [Tooltip("Time since the most recent wave started")]
     private float _timeSinceWaveStart;
     [Tooltip("Time since the most recent wave ended")]
     private float _timeSinceWaveEnd;
+    [Tooltip("The wait spot given to the previous spawn")]
+    private int _previousWaitSpot;
 
-    [Tooltip("The object that will be instantiated")]
-    [SerializeField] private GameObject _spawn;
+    //Configurable
+    [Tooltip("The time between spawns while not in waves")]
+    [SerializeField] private float _calmSpawnTime = 4;
+    [Tooltip("The time between spawns during waves")]
+    [SerializeField] private float _waveSpawnTime = 1;
+    [Tooltip("The time between waves of enemies")]
+    [SerializeField] private float _timeBetweenWaves;
+    [Tooltip("How long the spawner will spawn enemies more often")]
+    [SerializeField] private float _waveDuration = 4;
     [Tooltip("Whether or not objects will be spawned")]
     [SerializeField] private bool _canSpawn;
+    [Tooltip("The prefab for the enemy")]
+    [SerializeField] private GameObject _spawn;
 
     //Variables for the spawn
     [Tooltip("The player, used for setting the target of the enemy's shootbehavior")]
     [SerializeField] private GameObject _player;
-    [Tooltip("Possible positions where enemies can sit before exiting")]
-    [SerializeField] private Transform[] _sitSpots;
+    [Tooltip("Possible positions where enemies can waitbefore exiting")]
+    [SerializeField] private Transform[] _waitSpots;
     [Tooltip("Possible positions for enemies to loop around before sitting or exiting")]
     [SerializeField] private Transform[] _loopPositions;
     [Tooltip("Possible positions for enemies to exit the scene")]
@@ -100,13 +105,13 @@ public class SpawnerBehavior : MonoBehaviour
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop2 = _loopPositions[Random.Range(0, _loopPositions.Length)];
             }
 
-            //If only one sit spot exists
-            if (_sitSpots.Length == 1)
-                //Set the spawn's sit spot to be that one spot
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _sitSpots[0];
+            //If only one wait spot exists
+            if (_waitSpots.Length == 1)
+                //Set the spawn's wait spot to be that one spot
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _waitSpots[0];
             else
-                //Set a random sit spot
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _sitSpots[Random.Range(0, _sitSpots.Length)];
+                //Set a random wait spot
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
 
             //If only one exit spot exists
             if (_exitSpots.Length == 1)

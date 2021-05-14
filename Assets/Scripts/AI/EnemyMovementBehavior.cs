@@ -48,7 +48,7 @@ public class EnemyMovementBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// The spot the enemy sits on before leaving the screen
+    /// The spot the enemy waits on before leaving the screen
     /// </summary>
     public Transform WaitSpot
     {
