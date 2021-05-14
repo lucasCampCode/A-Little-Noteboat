@@ -106,7 +106,7 @@ public class SpawnerBehavior : MonoBehaviour
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _sitSpots[0];
             else
                 //Set a random sit spot
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().SitSpot = _sitSpots[Random.Range(0, _sitSpots.Length)];
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _sitSpots[Random.Range(0, _sitSpots.Length)];
 
             //If only one exit spot exists
             if (_exitSpots.Length == 1)
