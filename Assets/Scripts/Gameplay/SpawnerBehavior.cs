@@ -84,6 +84,7 @@ public class SpawnerBehavior : MonoBehaviour
         {
             //Create a new enemy
             GameObject spawnedEnemy = Instantiate(_spawn, transform.position, new Quaternion());
+            spawnedEnemy.GetComponent<enemyShootBehaviour>().Target = _player;
 
             //If only one loop position exists
             if (_loopPositions.Length == 1)

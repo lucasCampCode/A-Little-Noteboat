@@ -165,10 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a1d0eb1b7d82849bee05e69be188b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 1293817257619794346, guid: aab75c1e6ae8c194c8448b9673ed8d9d, type: 3}
+  _target: {fileID: 0}
   _bulletEmitter: {fileID: 2534614708717453172}
   _speed: 20
   _timePerShoot: 2
+  _angleOfAttack: 0.75
 --- !u!114 &1492161916639995873
 MonoBehaviour:
   m_ObjectHideFlags: 0

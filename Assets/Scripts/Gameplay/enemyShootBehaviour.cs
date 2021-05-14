@@ -15,7 +15,8 @@ public class enemyShootBehaviour : MonoBehaviour
     [SerializeField]
     private float _angleOfAttack = 0.5f;
     private float _time;
-
+    public bool tripleShot = false;
+    private int _shotsFired = 0;
     public GameObject Target
     {
         get { return _target; }
@@ -31,8 +32,22 @@ public class enemyShootBehaviour : MonoBehaviour
             _time += Time.deltaTime;
             if (_time > _timePerShoot)
             {
-                _bulletEmitter.Fire(direction * _speed);
-                _time = 0;
+                if (_shotsFired >= 2)
+                {
+                    tripleShot = false;
+                    _shotsFired = 0;
+                }
+                if (tripleShot)
+                {
+                    _bulletEmitter.Fire(direction * _speed);
+                    _time = _timePerShoot / 1.1f;
+                    _shotsFired++;
+                }
+                else
+                {
+                    _bulletEmitter.Fire(direction * _speed);
+                    _time = 0;
+                }
             }
         }
     }
