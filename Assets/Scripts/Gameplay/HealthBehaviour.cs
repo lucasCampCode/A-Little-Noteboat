@@ -6,6 +6,8 @@ public class HealthBehaviour : MonoBehaviour
 {
     [SerializeField]
     private float _health;
+    [SerializeField]
+    private bool _destroyOnDeath;
 
     public float Health
     {
@@ -27,7 +29,9 @@ public class HealthBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_health <= 0)
+        if (_destroyOnDeath && _health <= 0)
+            Destroy(gameObject);
+        else if (!_destroyOnDeath && _health <= 0)
             gameObject.SetActive(false);
     }
 }

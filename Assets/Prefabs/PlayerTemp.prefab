@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 636742271771360133}
   - component: {fileID: 5966947088468047760}
   - component: {fileID: 5966947088468047761}
-  - component: {fileID: 950431010}
+  - component: {fileID: 668289212}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Untagged
@@ -389,8 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfd86c765163b542ba0965ea8459bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turrent: {fileID: 8333372282101094897}
-  _speed: 20
+  _speed: 5
   _camera: {fileID: 0}
 --- !u!114 &5966947088468047761
 MonoBehaviour:
@@ -406,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 08293ba43b119f94bb8e0adc05513de1,
     type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -450,7 +449,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 950431010}
+      - m_Target: {fileID: 0}
         m_MethodName: onFire
         m_Mode: 0
         m_Arguments:
@@ -468,7 +467,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &950431010
+--- !u!114 &668289212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -477,7 +476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7877359688291133719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979ec164d2a7c53428e792727dd06310, type: 3}
+  m_Script: {fileID: 11500000, guid: d1f70161bedc6f84097ae91ef9e724db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _emitterBehaviour: {fileID: 5544640225652835950}
