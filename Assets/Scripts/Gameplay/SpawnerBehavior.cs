@@ -117,7 +117,7 @@ public class SpawnerBehavior : MonoBehaviour
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().ExitSpot = _exitSpots[Random.Range(0, _exitSpots.Length)];
 
             //Set the enemy's shoot behavior's target to be the target the spawner was given
-
+            spawnedEnemy.GetComponent<enemyShootBehaviour>().Target = _player;
 
             //Pause before spawning again
             yield return new WaitForSeconds(_timeBetweenSpawns);

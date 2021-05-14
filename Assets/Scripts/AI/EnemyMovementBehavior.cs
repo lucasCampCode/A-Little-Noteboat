@@ -89,8 +89,12 @@ public class EnemyMovementBehavior : MonoBehaviour
                     _timeOnSitSpot += Time.deltaTime;
                 //If time waited is or is greater than the random wait time
                 if (_timeOnSitSpot >= _timeToWait)
+                {
                     //Progress to the next stage
                     _progress++;
+                    //Do a triple shot
+                    _rigidbody.GetComponent<enemyShootBehaviour>().tripleShot = true;
+                }
                 else
                     //Go straight to the second target
                     _agent.SetDestination(_sitSpot.position);
