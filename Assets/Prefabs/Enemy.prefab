@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1492161916639995873}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loop1: {fileID: 0}
-  _sitSpot: {fileID: 0}
+  _waitSpot: {fileID: 0}
   _loop2: {fileID: 0}
   _exitSpot: {fileID: 0}
 --- !u!195 &8349371195963495383
@@ -169,7 +169,8 @@ MonoBehaviour:
   _bulletEmitter: {fileID: 2534614708717453172}
   _speed: 20
   _timePerShoot: 2
-  _angleOfAttack: 0.75
+  _sightRange: 0.5
+  tripleShot: 0
 --- !u!114 &1492161916639995873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ GameObject:
   - component: {fileID: 2534614708717453172}
   m_Layer: 0
   m_Name: bulletEmitter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8620598332960698138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8349371195963495384}
