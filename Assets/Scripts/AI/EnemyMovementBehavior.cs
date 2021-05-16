@@ -7,14 +7,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyMovementBehavior : MonoBehaviour
 {
-    enum Progress { FIRSTLOOP = 1, WAITSPOT = 2, SECONDLOOP = 3, EXIT = 4, DESTROY = 5 };
+    enum Progress { FIRSTLOOP = 1, WAIT = 2, SECONDLOOP = 3, EXIT = 4, DESTROY = 5 };
 
     private Rigidbody _rigidbody;
 
     [Tooltip("The location that the enemy moves around before going to the sit spot")]
     [SerializeField] private Transform _loop1;
     [Tooltip("The spot the enemy sits on before leaving the screen")]
-    [SerializeField] private Transform _sitSpot;
+    [SerializeField] private Transform _waitSpot;
     [Tooltip("The location that the enemy moves around before leaving the screen")]
     [SerializeField] private Transform _loop2;
     [Tooltip("The spot the enemy goes to exit the screen")]
@@ -26,8 +26,17 @@ public class EnemyMovementBehavior : MonoBehaviour
 
     private float _timeToWait;
     private float _timeOnLoop1 = 0;
-    private float _timeOnSitSpot = 0;
+    private float _timeWaited = 0;
     private float _timeOnLoop2 = 0;
+    private bool _isWaiting = false;
+
+    /// <summary>
+    /// Whether or not the enemy is waiting in the sit spot
+    /// </summary>
+    public bool IsWaiting
+    {
+        get { return _isWaiting; }
+    }
 
     /// <summary>
     /// The location that the enemy moves around before going to the sit spot
@@ -39,12 +48,12 @@ public class EnemyMovementBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// The spot the enemy sits on before leaving the screen
+    /// The spot the enemy waits on before leaving the screen
     /// </summary>
-    public Transform SitSpot
+    public Transform WaitSpot
     {
-        get { return _sitSpot; }
-        set { _sitSpot = value; }
+        get { return _waitSpot; }
+        set { _waitSpot = value; }
     }
 
     /// <summary>
@@ -82,18 +91,25 @@ public class EnemyMovementBehavior : MonoBehaviour
             case (int)Progress.FIRSTLOOP:
                 DoLoop(_loop1, ref _timeOnLoop1);
                 break;
-            case (int)Progress.WAITSPOT:
+            case (int)Progress.WAIT:
+                _isWaiting = true;
                 //If on the sit spot
-                if (DistanceToTarget(SitSpot) < 1)
+                if (DistanceToTarget(WaitSpot) < 1)
                     //Add time to the time waited
-                    _timeOnSitSpot += Time.deltaTime;
+                    _timeWaited += Time.deltaTime;
                 //If time waited is or is greater than the random wait time
-                if (_timeOnSitSpot >= _timeToWait)
+                if (_timeWaited >= _timeToWait)
+                {
+                    //Set isOnSitSpot to false
+                    _isWaiting = false;
                     //Progress to the next stage
                     _progress++;
+                    //Do a triple shot
+                    _rigidbody.GetComponent<enemyShootBehaviour>().tripleShot = true;
+                }
                 else
                     //Go straight to the second target
-                    _agent.SetDestination(_sitSpot.position);
+                    _agent.SetDestination(_waitSpot.position);
                 break;
             case (int)Progress.SECONDLOOP:
                 DoLoop(_loop2, ref _timeOnLoop2);
