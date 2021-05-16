@@ -105,7 +105,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                     //Progress to the next stage
                     _progress++;
                     //Do a triple shot
-                    _rigidbody.GetComponent<enemyShootBehaviour>().tripleShot = true;
+                    _rigidbody.GetComponent<EnemyShootBehaviour>().tripleShot = true;
                 }
                 else
                     //Go straight to the second target

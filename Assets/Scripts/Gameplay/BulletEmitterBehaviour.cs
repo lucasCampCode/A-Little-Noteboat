@@ -8,18 +8,25 @@ public class BulletEmitterBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject _bullet;
 
+    private void Start()
+    {
+        enabled = true;
+    }
     /// <summary>
     /// Spawns a bullet and applies the given force.
     /// </summary>
     /// <param name="force"></param>
     public void Fire(Vector3 force)
     {
-        //Spawn a new bullet
-        GameObject firedBullet = Instantiate(_bullet, transform.position, transform.rotation);
-        //Get a reference to the attached bullet script
-        BulletBehaviour bulletScript = firedBullet.GetComponent<BulletBehaviour>();
-        //If the script isn't null, apply a force to its rigidbody
-        if (bulletScript)
-            bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
+        if (enabled)
+        {
+            //Spawn a new bullet
+            GameObject firedBullet = Instantiate(_bullet, transform.position, transform.rotation);
+            //Get a reference to the attached bullet script
+            BulletBehaviour bulletScript = firedBullet.GetComponent<BulletBehaviour>();
+            //If the script isn't null, apply a force to its rigidbody
+            if (bulletScript)
+                bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
+        }
     }
 }
