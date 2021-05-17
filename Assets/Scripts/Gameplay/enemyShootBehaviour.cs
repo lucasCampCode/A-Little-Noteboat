@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyShootBehaviour : MonoBehaviour
+public class EnemyShootBehaviour : MonoBehaviour
 {
     [SerializeField]
     private GameObject _target;
     [SerializeField]
     private BulletEmitterBehaviour _bulletEmitter;
+    private EnemyMovementBehavior _movement;
     [Tooltip("how fast the bullet will travel")]
     [SerializeField]
     private float _speed = 5;
     [Tooltip("how long it takes to shoot a the target")]
     [SerializeField]
     private float _timePerShoot = 2;
-    [Range(-1,1)]
+    [Range(-1, 1)]
     [Tooltip("how much can the enemy see the target")]
     [SerializeField]
     private float _sightRange = 0.5f;
@@ -28,9 +29,14 @@ public class enemyShootBehaviour : MonoBehaviour
         get { return _target; }
         set { _target = value; }
     }
+    private void Start()
+    {
+        _movement = GetComponent<EnemyMovementBehavior>();
+    }
 
     void FixedUpdate()
     {
+
         //gets the direction to the target
         Vector3 direction = (_target.transform.position - transform.position).normalized;
         //calculates the angle from the direction to the items forward vector
@@ -40,19 +46,18 @@ public class enemyShootBehaviour : MonoBehaviour
         {
             //increase time to shoot by the time per frame
             _time += Time.deltaTime;
-            //when the time to shoot is greater than time per shoot
-            if (_time > _timePerShoot)
+            if (!_movement.IsWaiting)
             {
                 //when shots fired is greater than two 
-                if (_shotsFired >= 2)
-                {   
+                if (_shotsFired >= 2 && _time > _timePerShoot)
+                {
                     //turn off triple shot
                     tripleShot = false;
                     //reset shots fired
                     _shotsFired = 0;
                 }
                 //if tripleshot is true 
-                if (tripleShot)
+                if (tripleShot && _time > _timePerShoot)
                 {
                     //fire bullet
                     _bulletEmitter.Fire(direction * _speed);
@@ -61,7 +66,7 @@ public class enemyShootBehaviour : MonoBehaviour
                     //add to shot fired
                     _shotsFired++;
                 }
-                else
+                else if (!tripleShot && _time > _timePerShoot)
                 {
                     //fire bullet
                     _bulletEmitter.Fire(direction * _speed);

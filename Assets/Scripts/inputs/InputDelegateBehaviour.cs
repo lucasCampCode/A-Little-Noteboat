@@ -8,7 +8,7 @@ public class InputDelegateBehaviour : MonoBehaviour
     private InputMaster _playerControls;
     private PlayerMovementBehaviour _playerMovement;
     [SerializeField]
-    private BulletEmitterBehaviour _emitterBehaviour;
+    private List<BulletEmitterBehaviour> _emitters;
     [SerializeField]
     private float _fireForce = 5;
     private void Awake()
@@ -27,8 +27,8 @@ public class InputDelegateBehaviour : MonoBehaviour
     void Start()
     {
         _playerMovement = GetComponent<PlayerMovementBehaviour>();
-
-        _playerControls.Player.Fire.performed += ctx => _emitterBehaviour.Fire(_emitterBehaviour.transform.forward * _fireForce);
+        foreach(BulletEmitterBehaviour emitter in _emitters)
+        _playerControls.Player.Fire.performed += ctx => emitter.Fire(emitter.transform.forward * _fireForce);
     }
 
     // Update is called once per frame

@@ -11,7 +11,13 @@ public class BulletBehaviour : MonoBehaviour
     [Tooltip("The amount of time it takes for this bullet to despawn after being fired.")]
     [SerializeField]
     private float _despawnTime;
-
+    [SerializeField]
+    private string _hostTag;
+    public string Host
+    {
+        get { return _hostTag; }
+        set { _hostTag = value; }
+    }
     public Rigidbody Rigidbody
     {
         get{ return _rigidbody; }
@@ -39,9 +45,9 @@ public class BulletBehaviour : MonoBehaviour
     {
         //Grab the health behaviour attached to the object
         HealthBehaviour health = other.GetComponent<HealthBehaviour>();
-
+        if(!other.gameObject.CompareTag(_hostTag))
         //If the health behaviour isn't null, deal damage
-        if (health)
-            health.TakeDamage(Damage);
+            if (health)
+                health.TakeDamage(Damage);
     }
 }
