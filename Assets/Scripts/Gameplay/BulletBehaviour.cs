@@ -45,9 +45,12 @@ public class BulletBehaviour : MonoBehaviour
     {
         //Grab the health behaviour attached to the object
         HealthBehaviour health = other.GetComponent<HealthBehaviour>();
-        if(!other.gameObject.CompareTag(_hostTag))
-        //If the health behaviour isn't null, deal damage
+        if (!other.gameObject.CompareTag(_hostTag))
+        {
+            //If the health behaviour isn't null, deal damage
             if (health)
                 health.TakeDamage(Damage);
+            Destroy(gameObject);
+        }
     }
 }
