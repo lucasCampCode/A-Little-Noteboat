@@ -38,11 +38,9 @@ public class SpawnerBehavior : MonoBehaviour
     [Tooltip("The player, used for setting the target of the enemy's shootbehavior")]
     [SerializeField] private GameObject _player;
     [Tooltip("Possible positions where enemies can waitbefore exiting")]
-    [SerializeField] private Transform[] _waitSpots;
-    [Tooltip("Possible positions for enemies to loop around before sitting or exiting")]
-    [SerializeField] private Transform[] _loopPositions;
+    [SerializeField] private List<Transform> _waitSpots;
     [Tooltip("Possible positions for enemies to exit the scene")]
-    [SerializeField] private Transform[] _exitSpots;
+    [SerializeField] private List<Transform> _exitSpots;
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +80,7 @@ public class SpawnerBehavior : MonoBehaviour
                 //Set the time between spawns to be that of the wave spawn time
                 _timeBetweenSpawns = _waveSpawnTime;
                 //Set a loop position
-                _waveLoop = _loopPositions[Random.Range(0, _loopPositions.Length)];
+
             }
         }
     }
@@ -95,44 +93,26 @@ public class SpawnerBehavior : MonoBehaviour
             GameObject spawnedEnemy = Instantiate(_spawn, transform.position, new Quaternion());
             spawnedEnemy.GetComponent<EnemyShootBehaviour>().Target = _player;
 
-            //If only one loop position exists
-            if (_loopPositions.Length == 1)
-            {
-                //Set both loop positions to be the one position
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _loopPositions[0];
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop2 = _loopPositions[0];
-            }
-            else if (_inWave)
-            {
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _waveLoop;
-            }
-            else
-            {
-                //Set random loop positions
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _loopPositions[Random.Range(0, _loopPositions.Length)];
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop2 = _loopPositions[Random.Range(0, _loopPositions.Length)];
-            }
-
             //If only one wait spot exists
-            if (_waitSpots.Length == 1)
+            if (_waitSpots.Count == 1)
                 //Set the spawn's wait spot to be that one spot
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _waitSpots[0];
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _waitSpots[0];
             else
             {
-                Transform randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
+                Transform randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Count)];
                 while (randWaitSpot == _previousWaitSpot)
-                    randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
+                    randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Count)];
                 //Set a random wait spot that isn't the previous one
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _waitSpots[Random.Range(0, _waitSpots.Count)];
             }
 
             //If only one exit spot exists
-            if (_exitSpots.Length == 1)
+            if (_exitSpots.Count == 1)
                 //Set the spawn's exit spot to be that one exit spot
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().ExitSpot = _exitSpots[0];
             else
                 //Set a random exit spot
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().ExitSpot = _exitSpots[Random.Range(0, _exitSpots.Length)];
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().ExitSpot = _exitSpots[Random.Range(0, _exitSpots.Count)];
 
             //Set the enemy's shoot behavior's target to be the target the spawner was given
             spawnedEnemy.GetComponent<EnemyShootBehaviour>().Target = _player;
