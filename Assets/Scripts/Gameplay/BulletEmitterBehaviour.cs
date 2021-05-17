@@ -22,7 +22,7 @@ public class BulletEmitterBehaviour : MonoBehaviour
     /// <param name="force"></param>
     public void Fire(Vector3 force)
     {
-        if (gameObject.activeSelf && FireTime())
+        if (gameObject.activeSelf)
         {
             //Spawn a new bullet
             GameObject firedBullet = Instantiate(_bullet, transform.position, transform.rotation);
@@ -33,12 +33,6 @@ public class BulletEmitterBehaviour : MonoBehaviour
             //If the script isn't null, apply a force to its rigidbody
             if (bulletScript)
                 bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
-            _timeIncrement = 0;
         }
-    }
-    private bool FireTime()
-    {
-        _timeIncrement += Time.deltaTime;
-        return _timeIncrement >= _rateOfFire;
     }
 }

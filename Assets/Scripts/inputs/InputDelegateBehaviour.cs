@@ -35,6 +35,11 @@ public class InputDelegateBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _playerMovement.Move(_playerControls.Player.move.ReadValue<Vector2>()); 
+        _playerMovement.Move(_playerControls.Player.move.ReadValue<Vector2>());
+
+        if (_playerControls.Player.Fire.ReadValue<bool>())
+        {
+
+        }
     }
 }
