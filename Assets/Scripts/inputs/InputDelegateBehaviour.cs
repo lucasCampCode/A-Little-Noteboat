@@ -27,8 +27,9 @@ public class InputDelegateBehaviour : MonoBehaviour
     void Start()
     {
         _playerMovement = GetComponent<PlayerMovementBehaviour>();
+
         foreach(BulletEmitterBehaviour emitter in _emitters)
-        _playerControls.Player.Fire.performed += ctx => emitter.Fire(emitter.transform.forward * _fireForce);
+            _playerControls.Player.Fire.performed += ctx => emitter.Fire(emitter.transform.forward * _fireForce);
     }
 
     // Update is called once per frame

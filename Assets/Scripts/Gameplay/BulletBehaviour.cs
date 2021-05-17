@@ -50,6 +50,7 @@ public class BulletBehaviour : MonoBehaviour
             //If the health behaviour isn't null, deal damage
             if (health)
                 health.TakeDamage(Damage);
+            //destroies the bullet
             Destroy(gameObject);
         }
     }
