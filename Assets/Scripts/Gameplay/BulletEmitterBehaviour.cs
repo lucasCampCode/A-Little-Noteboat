@@ -7,15 +7,8 @@ public class BulletEmitterBehaviour : MonoBehaviour
     [Tooltip("A reference to the game object that the emitter will spawn. Must have BulletBehaviour attached to it.")]
     [SerializeField]
     private GameObject _bullet;
-    [SerializeField]
-    private float _rateOfFire = 0;
-    private float _timeIncrement = 0;
+    public GameObject Bullet { get { return _bullet; } }
 
-    public float RateOfFire
-    {
-        get { return _rateOfFire; }
-        set { _rateOfFire = value; }
-    }
     /// <summary>
     /// Spawns a bullet and applies the given force.
     /// </summary>

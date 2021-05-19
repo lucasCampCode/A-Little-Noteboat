@@ -140,7 +140,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!114 &5966947088468047760
 MonoBehaviour:
@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _camera: {fileID: 0}
 --- !u!114 &5966947088468047761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +246,8 @@ MonoBehaviour:
   _emitters:
   - {fileID: 6698502323611106336}
   - {fileID: 1293215436569651356}
-  _fireForce: 20
+  _fireForce: 10
+  _playerManager: {fileID: 11400000, guid: 8bc456475d0bd854294b664e1dc09c1f, type: 2}
 --- !u!114 &1437197930
 MonoBehaviour:
   m_ObjectHideFlags: 0
