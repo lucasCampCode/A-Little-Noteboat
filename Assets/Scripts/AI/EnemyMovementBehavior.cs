@@ -52,6 +52,7 @@ public class EnemyMovementBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //If the first loop is not complete
         if (!_firstLoopComplete)
         {
             Vector3 moveDirection = new Vector3();
@@ -75,7 +76,6 @@ public class EnemyMovementBehavior : MonoBehaviour
 
                 //Move sideways based on that vector
                 transform.position = Vector3.MoveTowards(transform.position, transform.position + moveDirection.normalized + Vector3.Cross(moveDirection, Vector3.up), 1f * Time.deltaTime);
-
 
                 //Increment time on first loop
                 _timeOnFirstLoop += Time.deltaTime;
