@@ -6,6 +6,5 @@ using UnityEngine;
 public class PlayerManagerScriptable : ScriptableObject
 {
     public float Damage;
-    [Range(0.02f,10)]
     public float RateOfFire;
 }
