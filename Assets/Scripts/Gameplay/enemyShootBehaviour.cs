@@ -59,21 +59,21 @@ public class EnemyShootBehaviour : MonoBehaviour
                 //if tripleshot is true 
                 if (tripleShot && _time > _timePerShoot)
                 {
-                    //fire bullet
-                    _bulletEmitter.Fire(direction * _speed);
-                    //set time to a close to time to shoot
-                    _time = _timePerShoot / 1.1f;
+                    SetTimeOfFire(direction, _timePerShoot / 1.1f);
                     //add to shot fired
                     _shotsFired++;
                 }
                 else if (!tripleShot && _time > _timePerShoot)
-                {
-                    //fire bullet
-                    _bulletEmitter.Fire(direction * _speed);
-                    //reset time to shoot to 0
-                    _time = 0;
-                }
+                    SetTimeOfFire(direction, 0);
             }
         }
     }
+
+    void SetTimeOfFire(Vector3 dir, float time)
+    {
+        _bulletEmitter.Fire(dir * _speed);
+        //reset time to shoot to 0
+        _time = time;
+    }
 }
+

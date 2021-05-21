@@ -167,6 +167,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""cd42f357-bfe7-437c-b1d7-f83a58b2d613"",
+                    ""path"": ""<HID::Nintendo Wireless Gamepad>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""d27a9f23-1370-4e5a-bcff-a36836deb358"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
@@ -190,8 +201,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""90a47fa2-3417-4042-bdb5-3d8c29f14696"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Hold,Press"",
                     ""processors"": """",
                     ""groups"": ""keyboard and mouse"",
                     ""action"": ""Fire"",
@@ -202,6 +213,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f9ae1f30-f86a-4793-993d-b5679c182ea0"",
                     ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Hold,Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0c43b55-5894-40e6-bbf6-9587915cae9a"",
+                    ""path"": ""<HID::Nintendo Wireless Gamepad>/button8"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

@@ -91,6 +91,7 @@ public class EnemyMovementBehavior : MonoBehaviour
             case (int)Progress.FIRSTLOOP:
                 DoLoop(_loop1, ref _timeOnLoop1);
                 break;
+
             case (int)Progress.WAIT:
                 _isWaiting = true;
                 //If on the sit spot
@@ -111,9 +112,11 @@ public class EnemyMovementBehavior : MonoBehaviour
                     //Go straight to the second target
                     _agent.SetDestination(_waitSpot.position);
                 break;
+
             case (int)Progress.SECONDLOOP:
                 DoLoop(_loop2, ref _timeOnLoop2);
                 break;
+
             case (int)Progress.EXIT:
                 //If on the sit spot
                 if (DistanceToTarget(_exitSpot) < 1)
@@ -123,6 +126,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                     //Go straight to the second target
                     _agent.SetDestination(_exitSpot.position);
                 break;
+
             case (int)Progress.DESTROY:
                 Destroy(gameObject);
                 break;
