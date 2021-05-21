@@ -59,12 +59,12 @@ public class GameManagerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_gameStart)
+        if (!_gameStart && _startScreen)
         {
-            Time.timeScale = 0.001f;
+            Time.timeScale = 0.0001f;
             return;
         }
-        else if (!_changeVar)
+        else if (!_changeVar && _startScreen)
         {
             _startScreen.SetActive(false);
             _HUD.SetActive(true);
