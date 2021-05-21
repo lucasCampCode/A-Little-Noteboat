@@ -9,7 +9,7 @@ public class EnemyMovementBehavior : MonoBehaviour
     [Tooltip("The target of the EnemyShootBehavior")]
     [SerializeField] private GameObject _player;
 
-    [SerializeField] private float _moveSpeed = 1;
+    [SerializeField] private float _moveSpeed;
 
     private bool _firstLoopComplete = false;
     private bool _waitComplete = false;
@@ -52,46 +52,63 @@ public class EnemyMovementBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Vector3 moveDirection = new Vector3();
+        Vector3 velocity = new Vector3();
         //If the first loop is not complete
         if (!_firstLoopComplete)
         {
-            Vector3 toTarget = _waitSpot.position - transform.position;
-            Vector3 moveDirection = new Vector3();
-            Vector3 velocity = new Vector3();
-            //If the distance between the current position and the waitSpot's position is less than 0.5
-            if ((transform.position - _waitSpot.position).magnitude > 0.5f)
+            Vector3 toWaitSpot = _waitSpot.position - transform.position;
+
+            //If the distance to the waitSpot's position is greater than 2
+            if ((transform.position - _waitSpot.position).magnitude > 2f)
             {
                 //Calculate the direction and velocity towards the waitSpot
-                moveDirection = _waitSpot.position - transform.position;
+                moveDirection = (_waitSpot.position - transform.position).normalized;
                 velocity = moveDirection * _moveSpeed * Time.deltaTime;
 
-                //Move to and look at the waitSpot
+                //Move to the waitSpot
                 _rigidbody.MovePosition(transform.position + velocity);
-                transform.LookAt(transform.position + moveDirection);
             }
+            //If the distance to the waitSpot's position is less than 2
             else
             {
-                _timeOnFirstLoop += Time.deltaTime;
-                if (_timeOnFirstLoop > 5)
-                    _firstLoopComplete = true;
-
-                //Calculate the direction and velocity towards the waitSpot
-                moveDirection = _waitSpot.position - transform.position;
-                toTarget = new Vector3(moveDirection.z, 0, -1 * moveDirection.x);
+                //Calculate the direction perpendicular to the vector towards the waitSpot
+                moveDirection = new Vector3(toWaitSpot.z, 0, -1 * toWaitSpot.x).normalized;
                 velocity = moveDirection * _moveSpeed * Time.deltaTime;
 
                 //Move sideways based on that vector
-                transform.position = Vector3.MoveTowards(transform.position, toTarget, 1f * Time.deltaTime);
-                //transform.position = Vector3.MoveTowards(transform.position, transform.position + moveDirection.normalized + Vector3.Cross(moveDirection, Vector3.up), 1f * Time.deltaTime);
+                _rigidbody.MovePosition(transform.position + velocity);
 
                 //Increment time on first loop
                 _timeOnFirstLoop += Time.deltaTime;
                 //If the time on the first loop is greater than three seconds
                 if (_timeOnFirstLoop > 3)
+                    //Set the first loop to be complete
                     _firstLoopComplete = true;
-                transform.LookAt(transform.position + moveDirection);
+            }
+            //Look where the enemy is going
+            transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
+        }
+        else if (!_waitComplete)
+        {
+            if ((transform.position - _waitSpot.position).magnitude > 0.25f)
+            {
+                //Calculate the direction and velocity towards the waitSpot
+                moveDirection = (_waitSpot.position - transform.position).normalized;
+                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+
+                //Move to the waitSpot
+                _rigidbody.MovePosition(transform.position + velocity);
+                //Look where the enemy is going
+                transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
+            }
+            else
+            {
+                _timeWaiting += Time.deltaTime;
+                //Look down the z axis
+                transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
             }
         }
-        //transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+
     }
 }

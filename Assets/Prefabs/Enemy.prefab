@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _moveSpeed: 1
+  _moveSpeed: 10
   _waitSpot: {fileID: 0}
   _exitSpot: {fileID: 0}
 --- !u!114 &6703070674051498218
