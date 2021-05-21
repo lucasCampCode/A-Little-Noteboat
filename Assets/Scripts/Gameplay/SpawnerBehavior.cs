@@ -15,8 +15,10 @@ public class SpawnerBehavior : MonoBehaviour
     private float _timeSinceWaveStart;
     [Tooltip("Time since the most recent wave ended")]
     private float _timeSinceWaveEnd;
+    [Tooltip("The first loop for the wave")]
+    private Transform _waveLoop;
     [Tooltip("The wait spot given to the previous spawn")]
-    private int _previousWaitSpot;
+    private Transform _previousWaitSpot;
 
     //Configurable
     [Tooltip("The time between spawns while not in waves")]
@@ -26,7 +28,7 @@ public class SpawnerBehavior : MonoBehaviour
     [Tooltip("The time between waves of enemies")]
     [SerializeField] private float _timeBetweenWaves;
     [Tooltip("How long the spawner will spawn enemies more often")]
-    [SerializeField] private float _waveDuration = 4;
+    [SerializeField] private float _waveDuration = 5;
     [Tooltip("Whether or not objects will be spawned")]
     [SerializeField] private bool _canSpawn;
     [Tooltip("The prefab for the enemy")]
@@ -79,6 +81,8 @@ public class SpawnerBehavior : MonoBehaviour
                 _timeSinceWaveStart = 0;
                 //Set the time between spawns to be that of the wave spawn time
                 _timeBetweenSpawns = _waveSpawnTime;
+                //Set a loop position
+                _waveLoop = _loopPositions[Random.Range(0, _loopPositions.Length)];
             }
         }
     }
@@ -98,6 +102,10 @@ public class SpawnerBehavior : MonoBehaviour
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _loopPositions[0];
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop2 = _loopPositions[0];
             }
+            else if (_inWave)
+            {
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _waveLoop;
+            }
             else
             {
                 //Set random loop positions
@@ -110,8 +118,13 @@ public class SpawnerBehavior : MonoBehaviour
                 //Set the spawn's wait spot to be that one spot
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().Loop1 = _waitSpots[0];
             else
-                //Set a random wait spot
+            {
+                Transform randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
+                while (randWaitSpot == _previousWaitSpot)
+                    randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
+                //Set a random wait spot that isn't the previous one
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _waitSpots[Random.Range(0, _waitSpots.Length)];
+            }
 
             //If only one exit spot exists
             if (_exitSpots.Length == 1)
