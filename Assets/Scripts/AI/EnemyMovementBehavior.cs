@@ -55,10 +55,11 @@ public class EnemyMovementBehavior : MonoBehaviour
         //If the first loop is not complete
         if (!_firstLoopComplete)
         {
+            Vector3 toTarget = _waitSpot.position - transform.position;
             Vector3 moveDirection = new Vector3();
             Vector3 velocity = new Vector3();
-            //If the distance between the current position and the waitSpot's position is less than 3
-            if ((transform.position - _waitSpot.position).magnitude > 3f)
+            //If the distance between the current position and the waitSpot's position is less than 0.5
+            if ((transform.position - _waitSpot.position).magnitude > 0.5f)
             {
                 //Calculate the direction and velocity towards the waitSpot
                 moveDirection = _waitSpot.position - transform.position;
@@ -66,25 +67,31 @@ public class EnemyMovementBehavior : MonoBehaviour
 
                 //Move to and look at the waitSpot
                 _rigidbody.MovePosition(transform.position + velocity);
-                transform.LookAt(moveDirection);
+                transform.LookAt(transform.position + moveDirection);
             }
             else
             {
+                _timeOnFirstLoop += Time.deltaTime;
+                if (_timeOnFirstLoop > 5)
+                    _firstLoopComplete = true;
+
                 //Calculate the direction and velocity towards the waitSpot
-                moveDirection = transform.position - _waitSpot.position;
+                moveDirection = _waitSpot.position - transform.position;
+                toTarget = new Vector3(moveDirection.z, 0, -1 * moveDirection.x);
                 velocity = moveDirection * _moveSpeed * Time.deltaTime;
 
                 //Move sideways based on that vector
-                transform.position = Vector3.MoveTowards(transform.position, transform.position + moveDirection.normalized + Vector3.Cross(moveDirection, Vector3.up), 1f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, toTarget, 1f * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, transform.position + moveDirection.normalized + Vector3.Cross(moveDirection, Vector3.up), 1f * Time.deltaTime);
 
                 //Increment time on first loop
                 _timeOnFirstLoop += Time.deltaTime;
                 //If the time on the first loop is greater than three seconds
                 if (_timeOnFirstLoop > 3)
                     _firstLoopComplete = true;
+                transform.LookAt(transform.position + moveDirection);
             }
-            transform.LookAt(moveDirection);
         }
-
+        //transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
     }
 }
