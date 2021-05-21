@@ -1,170 +1,97 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof (NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyMovementBehavior : MonoBehaviour
 {
-    enum Progress { FIRSTLOOP = 1, WAIT = 2, SECONDLOOP = 3, EXIT = 4, DESTROY = 5 };
-
     private Rigidbody _rigidbody;
+    [Tooltip("The target of the EnemyShootBehavior")]
+    [SerializeField] private GameObject _player;
 
-    [Tooltip("The location that the enemy moves around before going to the sit spot")]
-    [SerializeField] private Transform _loop1;
-    [Tooltip("The spot the enemy sits on before leaving the screen")]
-    [SerializeField] private Transform _waitSpot;
-    [Tooltip("The location that the enemy moves around before leaving the screen")]
-    [SerializeField] private Transform _loop2;
-    [Tooltip("The spot the enemy goes to exit the screen")]
-    [SerializeField] private Transform _exitSpot;
+    [SerializeField] private float _moveSpeed = 1;
 
-    private NavMeshAgent _agent;
+    private bool _firstLoopComplete = false;
+    private bool _waitComplete = false;
+    private bool _secondLoopComplete = false;
 
-    private int _progress = (int)Progress.FIRSTLOOP;
-
-    private float _timeToWait;
-    private float _timeOnLoop1 = 0;
-    private float _timeWaited = 0;
-    private float _timeOnLoop2 = 0;
     private bool _isWaiting = false;
 
-    /// <summary>
-    /// Whether or not the enemy is waiting in the sit spot
-    /// </summary>
-    public bool IsWaiting
-    {
-        get { return _isWaiting; }
-    }
+    private float _timeOnFirstLoop = 0;
+    private float _timeWaiting = 0;
+    private float _timeOnSecondLoop = 0;
 
-    /// <summary>
-    /// The location that the enemy moves around before going to the sit spot
-    /// </summary>
-    public Transform Loop1
-    {
-        get { return _loop1; }
-        set { _loop1 = value; }
-    }
+    [Tooltip("The spot that the enemy will orbit and wait at")]
+    [SerializeField] private Transform _waitSpot;
+    [Tooltip("The spot that the enemy will exit at")]
+    [SerializeField] private Transform _exitSpot;
 
-    /// <summary>
-    /// The spot the enemy waits on before leaving the screen
-    /// </summary>
     public Transform WaitSpot
     {
         get { return _waitSpot; }
         set { _waitSpot = value; }
     }
 
-    /// <summary>
-    /// The location that the enemy moves around before leaving the screen
-    /// </summary>
-    public Transform Loop2
-    {
-        get { return _loop2; }
-        set { _loop2 = value; }
-    }
-
-    /// <summary>
-    /// The spot the enemy goes to exit the screen
-    /// </summary>
     public Transform ExitSpot
     {
         get { return _exitSpot; }
         set { _exitSpot = value; }
     }
 
+    public bool IsWaiting
+    {
+        get { return _isWaiting; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        _timeToWait = Random.Range(5, 15);
-        //Assign the rigidbody and agent variables
         _rigidbody = GetComponent<Rigidbody>();
-        _agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        switch(_progress)
+        //If the first loop is not complete
+        if (!_firstLoopComplete)
         {
-            case (int)Progress.FIRSTLOOP:
-                DoLoop(_loop1, ref _timeOnLoop1);
-                break;
-
-            case (int)Progress.WAIT:
-                _isWaiting = true;
-                //If on the sit spot
-                if (DistanceToTarget(WaitSpot) < 1)
-                    //Add time to the time waited
-                    _timeWaited += Time.deltaTime;
-                //If time waited is or is greater than the random wait time
-                if (_timeWaited >= _timeToWait)
-                {
-                    //Set isOnSitSpot to false
-                    _isWaiting = false;
-                    //Progress to the next stage
-                    _progress++;
-                    //Do a triple shot
-                    _rigidbody.GetComponent<EnemyShootBehaviour>().tripleShot = true;
-                }
-                else
-                    //Go straight to the second target
-                    _agent.SetDestination(_waitSpot.position);
-                break;
-
-            case (int)Progress.SECONDLOOP:
-                DoLoop(_loop2, ref _timeOnLoop2);
-                break;
-
-            case (int)Progress.EXIT:
-                //If on the sit spot
-                if (DistanceToTarget(_exitSpot) < 1)
-                    //Progress to the next stage
-                    _progress++;
-                else
-                    //Go straight to the second target
-                    _agent.SetDestination(_exitSpot.position);
-                break;
-
-            case (int)Progress.DESTROY:
-                Destroy(gameObject);
-                break;
-        }
-    }
-
-    /// <summary>
-    /// Calculates the distance to the passed in transform
-    /// </summary>
-    /// <param name="target">The transform of the target</param>
-    /// <returns>distance between the rigidbody's position and the target's position</returns>
-    private float DistanceToTarget(Transform target)
-    {
-        return (transform.position - target.position).magnitude;
-    }
-
-    private void DoLoop(Transform loop, ref float timeOnLoop)
-    {
-        Vector3 toTarget = (loop.position - transform.position).normalized;
-
-        //If too far
-        if (DistanceToTarget(loop) > 4)
-            //Move to the target
-            _agent.SetDestination(loop.position);
-        //If close enough
-        else
-        {
-            timeOnLoop += Time.deltaTime;
-
-            //If the amount of time that the agent has been orbiting the first target is greater than two seconds
-            if (timeOnLoop > 2)
+            Vector3 toTarget = _waitSpot.position - transform.position;
+            Vector3 moveDirection = new Vector3();
+            Vector3 velocity = new Vector3();
+            //If the distance between the current position and the waitSpot's position is less than 0.5
+            if ((transform.position - _waitSpot.position).magnitude > 0.5f)
             {
-                //Progress to the next stage
-                _progress++;
-                return;
+                //Calculate the direction and velocity towards the waitSpot
+                moveDirection = _waitSpot.position - transform.position;
+                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+
+                //Move to and look at the waitSpot
+                _rigidbody.MovePosition(transform.position + velocity);
+                transform.LookAt(transform.position + moveDirection);
             }
-            //Turn sideways
-            _agent.SetDestination(transform.position + toTarget.normalized + Vector3.Cross(toTarget, Vector3.up));
+            else
+            {
+                _timeOnFirstLoop += Time.deltaTime;
+                if (_timeOnFirstLoop > 5)
+                    _firstLoopComplete = true;
+
+                //Calculate the direction and velocity towards the waitSpot
+                moveDirection = _waitSpot.position - transform.position;
+                toTarget = new Vector3(moveDirection.z, 0, -1 * moveDirection.x);
+                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+
+                //Move sideways based on that vector
+                transform.position = Vector3.MoveTowards(transform.position, toTarget, 1f * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, transform.position + moveDirection.normalized + Vector3.Cross(moveDirection, Vector3.up), 1f * Time.deltaTime);
+
+                //Increment time on first loop
+                _timeOnFirstLoop += Time.deltaTime;
+                //If the time on the first loop is greater than three seconds
+                if (_timeOnFirstLoop > 3)
+                    _firstLoopComplete = true;
+                transform.LookAt(transform.position + moveDirection);
+            }
         }
+        //transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
     }
 }
