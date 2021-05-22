@@ -519,7 +519,7 @@ PrefabInstance:
     - target: {fileID: 8349371195963495384, guid: 84b93a034ccbebf41bf98cd84540a980,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 2.192
       objectReference: {fileID: 0}
     - target: {fileID: 8349371195963495384, guid: 84b93a034ccbebf41bf98cd84540a980,
         type: 3}
@@ -566,10 +566,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8349371195963495386, guid: 84b93a034ccbebf41bf98cd84540a980,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8349371195963495388, guid: 84b93a034ccbebf41bf98cd84540a980,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8349371195963495389, guid: 84b93a034ccbebf41bf98cd84540a980,
         type: 3}
@@ -14984,8 +14989,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTemp
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 950431010, guid: 57842fa68a6f38d4fbba69a5f0520566, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57842fa68a6f38d4fbba69a5f0520566, type: 3}
 --- !u!114 &2066558135 stripped
 MonoBehaviour:
