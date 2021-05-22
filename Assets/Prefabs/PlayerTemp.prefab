@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 1437197931}
   - component: {fileID: 1437197932}
   - component: {fileID: 1437197930}
+  - component: {fileID: 6663512335564534992}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Player
@@ -198,21 +199,6 @@ MonoBehaviour:
     m_ActionName: Player/move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5966947088468047760}
-        m_MethodName: onLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bec9ac3c-3a2b-42d9-8508-d8511f0d1e15
-    m_ActionName: Player/Look[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 950431010}
         m_MethodName: onFire
         m_Mode: 0
@@ -246,7 +232,6 @@ MonoBehaviour:
   _emitters:
   - {fileID: 2228049485467703327}
   - {fileID: 1500654822990724087}
-  _fireForce: 10
   _playerManager: {fileID: 11400000, guid: 8bc456475d0bd854294b664e1dc09c1f, type: 2}
 --- !u!65 &1437197931
 BoxCollider:
@@ -288,6 +273,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _destroyOnDeath: 0
+--- !u!114 &6663512335564534992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7877359688291133719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455dab3821d08e349bc5a675cc013c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powerUp: {fileID: 0}
+  _itemLifeTime: 2
 --- !u!1001 &420051632509614348
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ public class InputDelegateBehaviour : MonoBehaviour
     [SerializeField]
     private List<BulletEmitterBehaviour> _emitters;
     [SerializeField]
-    private float _fireForce = 5;
-    [SerializeField]
     private PlayerManagerScriptable _playerManager;
     private float _time;
     private bool _isFireHold;
@@ -50,7 +48,7 @@ public class InputDelegateBehaviour : MonoBehaviour
             foreach (BulletEmitterBehaviour emitter in _emitters)
             {
                 emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;
-                emitter.Fire(emitter.transform.forward * _fireForce);
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);
             }
             _time = 0;
         }
