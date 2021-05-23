@@ -9,7 +9,12 @@ public class InputDelegateBehaviour : MonoBehaviour
     private InputMaster _playerControls;
     private PlayerMovementBehaviour _playerMovement;
     [SerializeField]
-    private List<BulletEmitterBehaviour> _emitters;
+    private List<BulletEmitterBehaviour> _regularEmitters;
+    public List<BulletEmitterBehaviour> RegularEmitters { get { return _regularEmitters; } }
+    [SerializeField]
+    private List<BulletEmitterBehaviour> _tripleEmitters;
+    public List<BulletEmitterBehaviour> TripleEmitters { get { return _tripleEmitters; } }
+
     [SerializeField]
     private PlayerManagerScriptable _playerManager;
     private float _time;
@@ -45,7 +50,12 @@ public class InputDelegateBehaviour : MonoBehaviour
 
         if (_isFireHold && _time > _playerManager.RateOfFire)
         {
-            foreach (BulletEmitterBehaviour emitter in _emitters)
+            foreach (BulletEmitterBehaviour emitter in _regularEmitters)
+            {
+                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);
+            }
+            foreach (BulletEmitterBehaviour emitter in _tripleEmitters)
             {
                 emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;
                 emitter.Fire(emitter.transform.forward * _playerManager.FireForce);

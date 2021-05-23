@@ -20,6 +20,7 @@ public class PickUpItemBehaviour : MonoBehaviour
 
         if (_time > _itemLifeTime)
         {
+            Debug.Log("time");
             _powerUp.GetComponent<PowerUp>().EndUpgrade();
             Destroy(_powerUp);
             _powerUp = null;
@@ -34,8 +35,10 @@ public class PickUpItemBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Item"))
         {
-            if (_powerUp)
+            if (_powerUp != null)
             {
+                Debug.Log("replace");
+                _powerUp.GetComponent<PowerUp>().EndUpgrade();
                 Destroy(_powerUp);
                 _powerUp = null;
                 _time = 0;
