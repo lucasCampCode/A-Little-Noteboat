@@ -9,8 +9,6 @@ public class PlayerMovementBehaviour : MonoBehaviour
     [Tooltip("the turrent that the mouse will me looking at")]
     [SerializeField]
     private float _speed = 1;
-    [SerializeField]
-    private Camera _camera;
 
     private Vector3 _velocity;
     // Start is called before the first frame update
@@ -31,6 +29,6 @@ public class PlayerMovementBehaviour : MonoBehaviour
     /// <param name="dir"></param>
     public void Move(Vector2 dir)
     {
-        _velocity = new Vector3(dir.x, 0, dir.y) * _speed * Time.deltaTime;
+        _velocity = new Vector3(dir.x, 0, 0) * _speed * Time.deltaTime;
     }
 }
