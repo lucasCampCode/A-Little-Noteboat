@@ -13,26 +13,25 @@ public class EnemyDropItemBehaviour : MonoBehaviour
     {
         _health = GetComponent<HealthBehaviour>();
     }
-
-    public void DropRandomItem()
-    {
-        
-    }
     // Update is called once per frame
     void Update()
     {
         if(_health.Health <= 0)
         {
+            //grabs a random number based from the amount of item in the array
             int rng = Random.Range(0, _items.Length);
+            //if the item exists in the array
             if (_items[rng])
             {
+                //create a game object from prefab
                 GameObject item = Instantiate(_items[rng], transform.position, new Quaternion());
+                //grab the triple shot script
                 TripleShot shot = item.GetComponent<TripleShot>();
-                if (shot)
-                    shot.Player = gameObject.GetComponent<EnemyShootBehaviour>().Target;
-                Destroy(item, 30);
+                if (shot)//if the script exists
+                    shot.Player = gameObject.GetComponent<EnemyShootBehaviour>().Target;//set the script target to be the enemy target
+                Destroy(item, 30);//fall back destroy if the player misses the item
             }
-            Destroy(gameObject);
+            Destroy(gameObject);//destroy the object that died
         }
     }
 }

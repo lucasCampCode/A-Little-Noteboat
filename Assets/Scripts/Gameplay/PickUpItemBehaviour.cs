@@ -13,36 +13,39 @@ public class PickUpItemBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_powerUp == null)
-            return;
-
+        //if powerup doesn't exists
+        if (!_powerUp)
+            return;//skip update
+        //increment time
         _time += Time.deltaTime;
-
+        //if time is greater than its the item lifetime
         if (_time > _itemLifeTime)
         {
-            Debug.Log("time");
+            //end the current upgrade on the ship
             _powerUp.GetComponent<PowerUp>().EndUpgrade();
-            Destroy(_powerUp);
-            _powerUp = null;
-            _time = 0;
+            Destroy(_powerUp);//destroy the current power up
+            _powerUp = null;//just incase powerup is not set to null
+            _time = 0;//reset time;
         }
         else
         {
+            //start the power up if ther time is less that item lifetime
             _powerUp.GetComponent<PowerUp>().StartUpgrade();
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if (collision.gameObject.CompareTag("Item"))//if the collision tag is item
         {
-            if (_powerUp != null)
+            if (_powerUp)//if the current power up exist
             {
-                Debug.Log("replace");
+                //end the current upgrade on the ship
                 _powerUp.GetComponent<PowerUp>().EndUpgrade();
-                Destroy(_powerUp);
-                _powerUp = null;
-                _time = 0;
+                Destroy(_powerUp);//destroy the current power up
+                _powerUp = null;//just incase powerup is not set to null
+                _time = 0;//reset time;
             }
+            //set the current power up to the powerup this object collided with
             _powerUp = collision.gameObject;
             collision.gameObject.SetActive(false);
         }
