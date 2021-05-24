@@ -28,7 +28,7 @@ public class EnemyDropItemBehaviour : MonoBehaviour
                 //grab the triple shot script
                 TripleShot shot = item.GetComponent<TripleShot>();
                 if (shot)//if the script exists
-                    shot.Player = gameObject.GetComponent<EnemyShootBehaviour>().Target;//set the script target to be the enemy target
+                    shot.Player = gameObject.GetComponent<EnemyShootingBehaviour>().Target;//set the script target to be the enemy target
                 Destroy(item, 30);//fall back destroy if the player misses the item
             }
             Destroy(gameObject);//destroy the object that died

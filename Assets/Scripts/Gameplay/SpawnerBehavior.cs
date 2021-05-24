@@ -87,7 +87,7 @@ public class SpawnerBehavior : MonoBehaviour
         {
             //Create a new enemy
             GameObject spawnedEnemy = Instantiate(_spawn, transform.position, new Quaternion());
-            spawnedEnemy.GetComponent<EnemyShootBehaviour>().Target = _player;
+            spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
 
             //If only one wait spot exists
             if (_waitSpots.Count == 1)
@@ -114,7 +114,7 @@ public class SpawnerBehavior : MonoBehaviour
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().ExitSpot = _exitSpots[Random.Range(0, _exitSpots.Count)];
 
             //Set the enemy's shoot behavior's target to be the target the spawner was given
-            spawnedEnemy.GetComponent<EnemyShootBehaviour>().Target = _player;
+            spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
 
             //Pause before spawning again
             yield return new WaitForSeconds(_timeBetweenSpawns);
