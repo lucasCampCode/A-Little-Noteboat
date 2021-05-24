@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 8349371195963495389}
   - component: {fileID: 6703070674051498218}
   - component: {fileID: 1492161916639995873}
+  - component: {fileID: 1349287893855061768}
+  - component: {fileID: -8632648287155122812}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -31,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8349371195963495390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.763, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 5516847893107230356}
@@ -54,7 +56,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8349371195963495390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -97,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.871481, y: 4, z: 4.010797}
-  m_Center: {x: 0, y: -1, z: 0.1543344}
+  m_Size: {x: 1.871481, y: 1.4278088, z: 4.010797}
+  m_Center: {x: 0, y: 0.28609562, z: 0.1543343}
 --- !u!54 &8349371195963495388
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -162,7 +164,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
-  _destroyOnDeath: 1
+  _destroyOnDeath: 0
+--- !u!65 &1349287893855061768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349371195963495390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.01, z: 1}
+  m_Center: {x: 0, y: -3.5, z: 0}
+--- !u!114 &-8632648287155122812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349371195963495390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d5847a39e96a04286b90af4cebba2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 3454697889742495775, guid: 60b56535a6dd97740aad7362d0e75f75, type: 3}
+  - {fileID: 0}
+  - {fileID: 526547981479709972, guid: 9b72f6b7bfa1f814fa65d5875f9b1f34, type: 3}
+  - {fileID: 0}
+  - {fileID: 3454697889742495775, guid: fc5c2e7ac53a9034499758e4ccb60317, type: 3}
+  - {fileID: 0}
 --- !u!1 &8620598332960698138
 GameObject:
   m_ObjectHideFlags: 0

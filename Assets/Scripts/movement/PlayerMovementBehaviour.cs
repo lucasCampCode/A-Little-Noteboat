@@ -29,6 +29,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     /// <param name="dir"></param>
     public void Move(Vector2 dir)
     {
+        //moves the player on the x axis 
         _velocity = new Vector3(dir.x, 0, 0) * _speed * Time.deltaTime;
     }
 }
