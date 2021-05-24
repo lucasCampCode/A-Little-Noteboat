@@ -14,12 +14,11 @@ public class EnemyMovementBehavior : MonoBehaviour
     private bool _firstLoopComplete = false;
     private bool _waitComplete = false;
     private bool _secondLoopComplete = false;
-
-    private bool _isWaiting = false;
-
     private float _timeOnFirstLoop = 0;
     private float _timeWaiting = 0;
     private float _timeOnSecondLoop = 0;
+
+    private bool _isLooping = false;
 
     [Tooltip("The spot that the enemy will orbit and wait at")]
     [SerializeField] private Transform _waitSpot;
@@ -38,10 +37,7 @@ public class EnemyMovementBehavior : MonoBehaviour
         set { _exitSpot = value; }
     }
 
-    public bool IsWaiting
-    {
-        get { return _isWaiting; }
-    }
+    public bool IsWaiting { get; private set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +55,8 @@ public class EnemyMovementBehavior : MonoBehaviour
         {
             Vector3 toWaitSpot = _waitSpot.position - transform.position;
 
-            //If the distance to the waitSpot's position is greater than 2
-            if ((transform.position - _waitSpot.position).magnitude > 2f)
+            //If the distance to the waitSpot's position is greater than 1
+            if ((transform.position - _waitSpot.position).magnitude > 1f && !_isLooping)
             {
                 //Calculate the direction and velocity towards the waitSpot
                 moveDirection = (_waitSpot.position - transform.position).normalized;
@@ -69,9 +65,12 @@ public class EnemyMovementBehavior : MonoBehaviour
                 //Move to the waitSpot
                 _rigidbody.MovePosition(transform.position + velocity);
             }
-            //If the distance to the waitSpot's position is less than 2
+            //If the distance to the waitSpot's position is less than 1
             else
             {
+                //Set isLooping to true to prevent snapping the forwards to be towards the waitSpot
+                _isLooping = true;
+
                 //Calculate the direction perpendicular to the vector towards the waitSpot
                 moveDirection = new Vector3(toWaitSpot.z, 0, -1 * toWaitSpot.x).normalized;
                 velocity = moveDirection * _moveSpeed * Time.deltaTime;
@@ -83,14 +82,19 @@ public class EnemyMovementBehavior : MonoBehaviour
                 _timeOnFirstLoop += Time.deltaTime;
                 //If the time on the first loop is greater than three seconds
                 if (_timeOnFirstLoop > 3)
+                {
                     //Set the first loop to be complete
                     _firstLoopComplete = true;
+                    _isLooping = false;
+                }
             }
             //Look where the enemy is going
             transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
         }
+        //If the enemy has not waited
         else if (!_waitComplete)
         {
+            //If not on the wait spot
             if ((transform.position - _waitSpot.position).magnitude > 0.25f)
             {
                 //Calculate the direction and velocity towards the waitSpot
@@ -102,13 +106,63 @@ public class EnemyMovementBehavior : MonoBehaviour
                 //Look where the enemy is going
                 transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
             }
+            //If on the wait spot
             else
             {
-                _timeWaiting += Time.deltaTime;
+                IsWaiting = true;
+
                 //Look down the z axis
                 transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
+
+                //Increment time waiting
+                _timeWaiting += Time.deltaTime;
+                if (_timeWaiting > 5)
+                    _waitComplete = true;
             }
         }
+        //If the enemy has not done the second loop
+        else if (!_secondLoopComplete)
+        {
+            Vector3 toWaitSpot = _waitSpot.position - transform.position;
 
+            //Calculate the direction perpendicular to the vector towards the waitSpot
+            moveDirection = new Vector3(toWaitSpot.z, 0, -1 * toWaitSpot.x).normalized;
+            velocity = moveDirection * _moveSpeed * Time.deltaTime;
+
+            //Move sideways based on that vector
+            _rigidbody.MovePosition(transform.position + velocity);
+
+            //Increment time on first loop
+            _timeOnSecondLoop += Time.deltaTime;
+            //If the time on the first loop is greater than three seconds
+            if (_timeOnSecondLoop > 1)
+                //Set the first loop to be complete
+                _secondLoopComplete = true;
+
+            //Look where the enemy is going
+            transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
+        }
+        //If the enemy has not exited
+        else
+        {
+            //If not on the exit spot
+            if ((transform.position - _exitSpot.position).magnitude > 0.25f)
+            {
+                //Calculate the direction and velocity towards the exitSpot
+                moveDirection = (_exitSpot.position - transform.position).normalized;
+                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+
+                //Move to the exit spot
+                _rigidbody.MovePosition(transform.position + velocity);
+            }
+            //If on the exit spot
+            else
+            {
+                //Destroy the enemy this script is attached to
+                Destroy(gameObject);
+            }
+            //Look where the enemy is going
+            transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
+        }
     }
 }
