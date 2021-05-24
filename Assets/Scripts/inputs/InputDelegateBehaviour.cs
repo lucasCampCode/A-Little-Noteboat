@@ -9,9 +9,12 @@ public class InputDelegateBehaviour : MonoBehaviour
     private InputMaster _playerControls;
     private PlayerMovementBehaviour _playerMovement;
     [SerializeField]
-    private List<BulletEmitterBehaviour> _emitters;
+    private List<BulletEmitterBehaviour> _regularEmitters;
+    public List<BulletEmitterBehaviour> RegularEmitters { get { return _regularEmitters; } }
     [SerializeField]
-    private float _fireForce = 5;
+    private List<BulletEmitterBehaviour> _tripleEmitters;
+    public List<BulletEmitterBehaviour> TripleEmitters { get { return _tripleEmitters; } }
+
     [SerializeField]
     private PlayerManagerScriptable _playerManager;
     private float _time;
@@ -35,24 +38,29 @@ public class InputDelegateBehaviour : MonoBehaviour
 
         _playerControls.Player.Fire.started += ctx => _isFireHold = true;
         _playerControls.Player.Fire.canceled += ctx => _isFireHold = false;
-        //foreach (BulletEmitterBehaviour emitter in _emitters)
-        //    _playerControls.Player.Fire.performed += ctx => emitter.Fire(emitter.transform.forward * _fireForce);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //increment time
         _time += Time.deltaTime;
+        //apply movement input to the movement script
         _playerMovement.Move(_playerControls.Player.move.ReadValue<Vector2>());
 
-        if (_isFireHold && _time > _playerManager.RateOfFire)
+        if (_isFireHold && _time > _playerManager.RateOfFire)//if the input is held down and time is true
         {
-            foreach (BulletEmitterBehaviour emitter in _emitters)
+            foreach (BulletEmitterBehaviour emitter in _regularEmitters)//for each regular emitter
             {
-                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;
-                emitter.Fire(emitter.transform.forward * _fireForce);
+                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);//apply the bullets movement
             }
-            _time = 0;
+            foreach (BulletEmitterBehaviour emitter in _tripleEmitters)//for each Triple emitter
+            {
+                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);//apply the bullets movement
+            }
+            _time = 0;//reset time
         }
     }
 }

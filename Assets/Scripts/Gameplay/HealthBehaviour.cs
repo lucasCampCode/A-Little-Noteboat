@@ -32,6 +32,9 @@ public class HealthBehaviour : MonoBehaviour
         if (_destroyOnDeath && _health <= 0)
             Destroy(gameObject);
         else if (!_destroyOnDeath && _health <= 0)
-            gameObject.SetActive(false);
+        {
+            if(!gameObject.CompareTag("Enemy"))
+                gameObject.SetActive(false);
+        }
     }
 }

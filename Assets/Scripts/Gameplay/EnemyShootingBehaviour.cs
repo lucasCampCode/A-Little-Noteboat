@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShootBehaviour : MonoBehaviour
+public class EnemyShootingBehaviour : MonoBehaviour
 {
     [SerializeField]
     private GameObject _target;
