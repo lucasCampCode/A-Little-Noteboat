@@ -38,29 +38,29 @@ public class InputDelegateBehaviour : MonoBehaviour
 
         _playerControls.Player.Fire.started += ctx => _isFireHold = true;
         _playerControls.Player.Fire.canceled += ctx => _isFireHold = false;
-        //foreach (BulletEmitterBehaviour emitter in _emitters)
-        //    _playerControls.Player.Fire.performed += ctx => emitter.Fire(emitter.transform.forward * _fireForce);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //increment time
         _time += Time.deltaTime;
+        //apply movement input to the movement script
         _playerMovement.Move(_playerControls.Player.move.ReadValue<Vector2>());
 
-        if (_isFireHold && _time > _playerManager.RateOfFire)
+        if (_isFireHold && _time > _playerManager.RateOfFire)//if the input is held down and time is true
         {
-            foreach (BulletEmitterBehaviour emitter in _regularEmitters)
+            foreach (BulletEmitterBehaviour emitter in _regularEmitters)//for each regular emitter
             {
-                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;
-                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);
+                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);//apply the bullets movement
             }
-            foreach (BulletEmitterBehaviour emitter in _tripleEmitters)
+            foreach (BulletEmitterBehaviour emitter in _tripleEmitters)//for each Triple emitter
             {
-                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;
-                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);
+                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);//apply the bullets movement
             }
-            _time = 0;
+            _time = 0;//reset time
         }
     }
 }
