@@ -15,8 +15,6 @@ public class SpawnerBehavior : MonoBehaviour
     private float _timeSinceWaveStart;
     [Tooltip("Time since the most recent wave ended")]
     private float _timeSinceWaveEnd;
-    [Tooltip("The first loop for the wave")]
-    private Transform _waveLoop;
     [Tooltip("The wait spot given to the previous spawn")]
     private Transform _previousWaitSpot;
 
@@ -79,8 +77,6 @@ public class SpawnerBehavior : MonoBehaviour
                 _timeSinceWaveStart = 0;
                 //Set the time between spawns to be that of the wave spawn time
                 _timeBetweenSpawns = _waveSpawnTime;
-                //Set a loop position
-
             }
         }
     }
@@ -91,7 +87,7 @@ public class SpawnerBehavior : MonoBehaviour
         {
             //Create a new enemy
             GameObject spawnedEnemy = Instantiate(_spawn, transform.position, new Quaternion());
-            spawnedEnemy.GetComponent<EnemyShootBehaviour>().Target = _player;
+            spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
 
             //If only one wait spot exists
             if (_waitSpots.Count == 1)
@@ -102,8 +98,11 @@ public class SpawnerBehavior : MonoBehaviour
                 Transform randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Count)];
                 while (randWaitSpot == _previousWaitSpot)
                     randWaitSpot = _waitSpots[Random.Range(0, _waitSpots.Count)];
+
                 //Set a random wait spot that isn't the previous one
-                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = _waitSpots[Random.Range(0, _waitSpots.Count)];
+                spawnedEnemy.GetComponent<EnemyMovementBehavior>().WaitSpot = randWaitSpot;
+                //Set the previousWaitSpot variable to be the new spot
+                _previousWaitSpot = randWaitSpot;
             }
 
             //If only one exit spot exists
@@ -115,7 +114,7 @@ public class SpawnerBehavior : MonoBehaviour
                 spawnedEnemy.GetComponent<EnemyMovementBehavior>().ExitSpot = _exitSpots[Random.Range(0, _exitSpots.Count)];
 
             //Set the enemy's shoot behavior's target to be the target the spawner was given
-            spawnedEnemy.GetComponent<EnemyShootBehaviour>().Target = _player;
+            spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
 
             //Pause before spawning again
             yield return new WaitForSeconds(_timeBetweenSpawns);
