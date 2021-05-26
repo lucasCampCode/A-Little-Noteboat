@@ -9,6 +9,8 @@ public class SpawnerBehavior : MonoBehaviour
 
     //Wave related
     //Informational
+    [Tooltip("Time since the game started")]
+    private float _timeSinceGameStart = 0;
     [Tooltip("Whether or not the game is currently in a wave")]
     private bool _inWave = false;
     [Tooltip("Time since the most recent wave started")]
@@ -49,6 +51,8 @@ public class SpawnerBehavior : MonoBehaviour
 
     private void Update()
     {
+        _timeSinceGameStart += Time.deltaTime;
+
         //If in a wave
         if (_inWave)
         {
@@ -117,7 +121,7 @@ public class SpawnerBehavior : MonoBehaviour
             spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
 
             //Pause before spawning again
-            yield return new WaitForSeconds(_timeBetweenSpawns);
+            yield return new WaitForSeconds(_timeBetweenSpawns - (_timeSinceGameStart * 0.01f));
         }
     }
 }
