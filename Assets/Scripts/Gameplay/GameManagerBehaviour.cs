@@ -81,6 +81,6 @@ public class GameManagerBehaviour : MonoBehaviour
 
         _gameOver = _playerHealth.Health <= 0;
 
-        _gameOverScreen.SetActive(_gameOver);
+        //_gameOverScreen.SetActive(_gameOver);
     }
 }

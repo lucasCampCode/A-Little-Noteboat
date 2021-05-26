@@ -11,6 +11,8 @@ public class EnemyMovementBehavior : MonoBehaviour
 
     [SerializeField] private float _moveSpeed;
 
+    Vector3 velocity;
+
     private bool _firstLoopComplete = false;
     private bool _waitComplete = false;
     private bool _secondLoopComplete = false;
@@ -48,27 +50,29 @@ public class EnemyMovementBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Vector3 toWaitSpot = (_waitSpot.position - transform.position).normalized;
         Vector3 moveDirection = new Vector3();
-        Vector3 velocity = new Vector3();
+        Vector3 desiredVelocity = new Vector3();
+        Vector3 steeringForce = new Vector3();
+
         //If the first loop is not complete
         if (!_firstLoopComplete)
         {
-            Vector3 toWaitSpot = _waitSpot.position - transform.position;
-
-            //If the distance to the waitSpot's position is greater than 1
+            //If the distance to the waitSpot's position is greater than 1 and isn't looping
             if ((transform.position - _waitSpot.position).magnitude > 1f && !_isLooping)
             {
-                //Calculate the direction and velocity towards the waitSpot
-                moveDirection = (_waitSpot.position - transform.position).normalized;
-                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+                //Calculate the steering force and velocity
+                desiredVelocity = toWaitSpot * _moveSpeed;
+                steeringForce = desiredVelocity - velocity;
+                velocity += steeringForce;
 
                 //Move to the waitSpot
-                _rigidbody.MovePosition(transform.position + velocity);
+                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
             }
-            //If the distance to the waitSpot's position is less than 1
+            //If the enemy is looping 
             else
             {
-                //Set isLooping to true to prevent snapping the forwards to be towards the waitSpot
+                //Set isLooping to true to prevent snapping the forwards to be towards the waitSpot while looping
                 _isLooping = true;
 
                 //Calculate the direction perpendicular to the vector towards the waitSpot
@@ -97,14 +101,17 @@ public class EnemyMovementBehavior : MonoBehaviour
             //If not on the wait spot
             if ((transform.position - _waitSpot.position).magnitude > 0.25f)
             {
-                //Calculate the direction and velocity towards the waitSpot
-                moveDirection = (_waitSpot.position - transform.position).normalized;
-                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+                //Calculate the steering force and velocity
+                desiredVelocity = toWaitSpot * _moveSpeed;
+                steeringForce = desiredVelocity - velocity;
+                velocity += steeringForce;
 
                 //Move to the waitSpot
-                _rigidbody.MovePosition(transform.position + velocity);
+                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
+
                 //Look where the enemy is going
                 transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
+                //transform.forward = Vector3.Lerp(transform.forward, toWaitSpot, 0.25f);
             }
             //If on the wait spot
             else
@@ -117,14 +124,15 @@ public class EnemyMovementBehavior : MonoBehaviour
                 //Increment time waiting
                 _timeWaiting += Time.deltaTime;
                 if (_timeWaiting > 5)
+                {
                     _waitComplete = true;
+                    IsWaiting = false;
+                }
             }
         }
         //If the enemy has not done the second loop
         else if (!_secondLoopComplete)
         {
-            Vector3 toWaitSpot = _waitSpot.position - transform.position;
-
             //Calculate the direction perpendicular to the vector towards the waitSpot
             moveDirection = new Vector3(toWaitSpot.z, 0, -1 * toWaitSpot.x).normalized;
             velocity = moveDirection * _moveSpeed * Time.deltaTime;
