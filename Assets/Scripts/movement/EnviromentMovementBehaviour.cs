@@ -8,10 +8,10 @@ public class EnviromentMovementBehaviour : MonoBehaviour
     private float _speed;
     [Tooltip("The max z distance the object can move to")]
     [SerializeField]
-    private float _maxPosZ = 16.5f;
+    private float _maxPosZ = 0;
     [Tooltip("The position the object will teleport to")]
     [SerializeField]
-    private GameObject _telePos;
+    private float _telePosZ = 0;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +20,6 @@ public class EnviromentMovementBehaviour : MonoBehaviour
         //Checks if the objects position goes past the maximum z
         if (transform.position.z < _maxPosZ)
             //If true, the object is teleported to the given _telePos's z position
-            transform.position = new Vector3(transform.position.x, transform.position.y, _telePos.transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, _telePosZ);
     }
 }
