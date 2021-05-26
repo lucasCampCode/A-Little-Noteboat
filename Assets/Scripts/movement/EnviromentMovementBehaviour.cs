@@ -8,10 +8,10 @@ public class EnviromentMovementBehaviour : MonoBehaviour
     private float _speed;
     [Tooltip("The max z distance the object can move to")]
     [SerializeField]
-    private float _maxPosZ = 0;
+    private float _maxPosZ;
     [Tooltip("The position the object will teleport to")]
     [SerializeField]
-    private float _telePosZ = 0;
+    private float _telePosZ;
 
     // Update is called once per frame
     void Update()
