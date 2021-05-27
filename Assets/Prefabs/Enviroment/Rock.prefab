@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2842674375025123641}
   - component: {fileID: -8554229284347265033}
   m_Layer: 0
-  m_Name: rock
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: -2
   _maxPosZ: -15
-  _telePos: {fileID: 0}
+  _telePosZ: 0
 --- !u!1001 &1326330867220050206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 81.6915
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 223024f31a966c141ac5c751238e45bd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e8f6cc24ca3fad4e8d5e8c469ef9d8f, type: 2}
     - target: {fileID: -927199367670048503, guid: 223024f31a966c141ac5c751238e45bd,
         type: 3}
       propertyPath: m_Name
