@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class SpawnerBehavior : MonoBehaviour
 {
-    [Tooltip("Time in seconds between spawns")]
-    private float _timeBetweenSpawns;
 
-    //Wave related
     //Informational
     [Tooltip("Time since the game started")]
-    private float _timeSinceGameStart = 0;
+    [SerializeField] private float _timeSinceGameStart = 0;
+    [Tooltip("Current time in seconds between spawns")]
+    [SerializeField] private float _currentTimeBetweenSpawns;
     [Tooltip("Whether or not the game is currently in a wave")]
-    private bool _inWave = false;
+    [SerializeField] private bool _inWave = false;
     [Tooltip("Time since the most recent wave started")]
-    private float _timeSinceWaveStart;
+    [SerializeField] private float _timeSinceWaveStart;
     [Tooltip("Time since the most recent wave ended")]
-    private float _timeSinceWaveEnd;
+    [SerializeField] private float _timeSinceWaveEnd;
     [Tooltip("The wait spot given to the previous spawn")]
     private Transform _previousWaitSpot;
 
@@ -45,7 +44,7 @@ public class SpawnerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _timeBetweenSpawns = _calmSpawnTime;
+        _currentTimeBetweenSpawns = _calmSpawnTime;
         StartCoroutine(SpawnObjects());
     }
 
@@ -57,30 +56,36 @@ public class SpawnerBehavior : MonoBehaviour
         if (_inWave)
         {
             _timeSinceWaveStart += Time.deltaTime;
-            //If the time since the wave started is less than the time that waves last
+            //If the time since the wave started is greater than or equal to the time that waves last
             if (_timeSinceWaveStart >= _waveDuration)
             {
                 //Set inWave to be false
                 _inWave = false;
                 //Reset timeSinceWaveEnd
                 _timeSinceWaveEnd = 0;
-                //Set the time between spawns to be that of the calm spawn time
-                _timeBetweenSpawns = _calmSpawnTime;
+                //Set the time between spawns to be the calm spawn time
+                _currentTimeBetweenSpawns = _calmSpawnTime;
+
+                //Recalculate the spawn times
+                RecalculateSpawnTimes();
             }
         }
         //If not in a wave
         else
         {
             _timeSinceWaveEnd += Time.deltaTime;
-            //If the time since the wave ended is less than the time between waves
+            //If the time since the wave ended is greater than or equal to the time between waves
             if (_timeSinceWaveEnd >= _timeBetweenWaves)
             {
                 //Set inWave to be true
                 _inWave = true;
                 //Reset timeSinceWaveStart
                 _timeSinceWaveStart = 0;
-                //Set the time between spawns to be that of the wave spawn time
-                _timeBetweenSpawns = _waveSpawnTime;
+                //Set the time between spawns to be the wave spawn time
+                _currentTimeBetweenSpawns = _waveSpawnTime;
+
+                //Recalculate the spawn times
+                RecalculateSpawnTimes();
             }
         }
     }
@@ -121,7 +126,18 @@ public class SpawnerBehavior : MonoBehaviour
             spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
 
             //Pause before spawning again
-            yield return new WaitForSeconds(_timeBetweenSpawns - (_timeSinceGameStart * 0.01f));
+            yield return new WaitForSeconds(_currentTimeBetweenSpawns);
         }
+    }
+
+    private void RecalculateSpawnTimes()
+    {
+        //Decrease the time between spawns during waves and spawns during waves
+        _calmSpawnTime -= (_timeSinceGameStart * 0.0005f);
+        _waveSpawnTime -= (_timeSinceGameStart * 0.001f);
+
+        //Increase the time between waves
+        _timeBetweenWaves += (_timeSinceGameStart * 0.025f);
+        _waveDuration += (_timeSinceGameStart * 0.001f);
     }
 }
