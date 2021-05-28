@@ -53,12 +53,12 @@ public class InputDelegateBehaviour : MonoBehaviour
             foreach (BulletEmitterBehaviour emitter in _regularEmitters)//for each regular emitter
             {
                 emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
-                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);//apply the bullets movement
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce, _playerManager.BulletScale);//apply the bullets movement
             }
             foreach (BulletEmitterBehaviour emitter in _tripleEmitters)//for each Triple emitter
             {
                 emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
-                emitter.Fire(emitter.transform.forward * _playerManager.FireForce);//apply the bullets movement
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce, _playerManager.BulletScale);//apply the bullets movement
             }
             _time = 0;//reset time
         }

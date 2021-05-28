@@ -221,11 +221,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1484166866364083131, guid: 84b93a034ccbebf41bf98cd84540a980,
+        type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 1319084453}
     - target: {fileID: 6703070674051498218, guid: 84b93a034ccbebf41bf98cd84540a980,
         type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 1319084453}
+    - target: {fileID: 8184769341797098646, guid: 84b93a034ccbebf41bf98cd84540a980,
+        type: 3}
+      propertyPath: _items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184769341797098646, guid: 84b93a034ccbebf41bf98cd84540a980,
+        type: 3}
+      propertyPath: _items.Array.data[0]
+      value: 
+      objectReference: {fileID: 526547981479709972, guid: 9b72f6b7bfa1f814fa65d5875f9b1f34,
+        type: 3}
     - target: {fileID: 8349371195963495383, guid: 84b93a034ccbebf41bf98cd84540a980,
         type: 3}
       propertyPath: m_Enabled
@@ -708,6 +724,7 @@ MonoBehaviour:
   _playerHealth: {fileID: 2066558135}
   _startScreen: {fileID: 2012987810}
   _HUD: {fileID: 1878335238}
+  _pauseScreen: {fileID: 0}
   _gameOverScreen: {fileID: 1784297965}
 --- !u!4 &1663783563
 Transform:
