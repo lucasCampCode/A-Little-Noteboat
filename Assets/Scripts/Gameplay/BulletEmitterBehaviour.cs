@@ -13,7 +13,7 @@ public class BulletEmitterBehaviour : MonoBehaviour
     /// Spawns a bullet and applies the given force.
     /// </summary>
     /// <param name="force"></param>
-    public void Fire(Vector3 force)
+    public void Fire(Vector3 force, float Scale = 1)
     {
         if (gameObject.activeSelf)
         {
@@ -21,11 +21,15 @@ public class BulletEmitterBehaviour : MonoBehaviour
             GameObject firedBullet = Instantiate(_bullet, transform.position, transform.rotation);
             //Get a reference to the attached bullet script
             BulletBehaviour bulletScript = firedBullet.GetComponent<BulletBehaviour>();
-            //applies the host tag
-            bulletScript.Host = gameObject.tag;
+
             //If the script isn't null, apply a force to its rigidbody
             if (bulletScript)
+            {
+                //applies the host tag
+                bulletScript.Host = gameObject.tag;
                 bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
+                firedBullet.transform.localScale = new Vector3(1,1,1) * Scale;
+            }
         }
     }
 }

@@ -8,29 +8,27 @@ public class TripleShot : PowerUp
     private GameObject _player;
     public GameObject Player { set { _player = value; } }
     private InputDelegateBehaviour _delegate;
+    public int Amount = 0;
     public override void StartUpgrade()
     {
         _delegate = _player.GetComponent<InputDelegateBehaviour>();
-        foreach(BulletEmitterBehaviour emitter in _delegate.RegularEmitters)
+        if (Amount > 0)
         {
-            emitter.gameObject.SetActive(false);
-        }
-        foreach (BulletEmitterBehaviour emitter in _delegate.TripleEmitters)
-        {
-            emitter.gameObject.SetActive(true);
+            foreach (BulletEmitterBehaviour emitter in _delegate.RegularEmitters)
+                emitter.gameObject.SetActive(false);
+            foreach (BulletEmitterBehaviour emitter in _delegate.TripleEmitters)
+                emitter.gameObject.SetActive(true);
         }
     }
     public override void EndUpgrade()
     {
         _delegate = _player.GetComponent<InputDelegateBehaviour>();
-        foreach (BulletEmitterBehaviour emitter in _delegate.RegularEmitters)
+        if (Amount <= 1)
         {
-            emitter.gameObject.SetActive(true);
-        }
-        foreach (BulletEmitterBehaviour emitter in _delegate.TripleEmitters)
-        {
-            emitter.gameObject.SetActive(false);
+            foreach (BulletEmitterBehaviour emitter in _delegate.RegularEmitters)
+                emitter.gameObject.SetActive(true);
+            foreach (BulletEmitterBehaviour emitter in _delegate.TripleEmitters)
+                emitter.gameObject.SetActive(false);
         }
     }
-
 }

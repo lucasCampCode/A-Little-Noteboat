@@ -169,4 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ace1000f83b3f4ca3603a87fa18aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lifetime: 5
   _manager: {fileID: 11400000, guid: 8bc456475d0bd854294b664e1dc09c1f, type: 2}
+  _rateOfFireAmount: -0.1
+  _FireForceAmount: 1
