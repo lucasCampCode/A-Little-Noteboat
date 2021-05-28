@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2842674375025123641}
   - component: {fileID: -8554229284347265033}
+  - component: {fileID: 5834861428143798035}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -47,6 +48,36 @@ MonoBehaviour:
   _speed: -2
   _maxPosZ: -16
   _telePosZ: 16
+--- !u!114 &5834861428143798035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543619354406354492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614699726b16dfa44b4abc8f4095f841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: ddf7f83426cade746a3720b7ac769676, type: 2}
+  outlineScaleFactor: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1097213434243052509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010415718101821463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614699726b16dfa44b4abc8f4095f841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 298e3093b738c4b4388636d6ce5a8386, type: 2}
+  outlineScaleFactor: 0.01
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1326330867220050206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +172,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223024f31a966c141ac5c751238e45bd, type: 3}
+--- !u!1 &7010415718101821463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 223024f31a966c141ac5c751238e45bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1326330867220050206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6274259934541568516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 223024f31a966c141ac5c751238e45bd,

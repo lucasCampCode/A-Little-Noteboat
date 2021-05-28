@@ -1,10 +1,8 @@
-﻿Shader "Unlit/ToonShader"
+﻿Shader "Unlit/TestShader"
 {
     Properties
     {
-        Vector1_35A08CA9("power", Range(1, 5)) = 1
-        Vector1_81E7ABE5("edge", Float) = 0.5
-        _OutlineColor("OutlineColor", Color) = (1, 0, 0, 0)
+        _OutlineColor("OutlineColor", Color) = (0, 0, 0, 0)
         _ScaleFactor("ScaleFactor", Float) = 1.1
     }
         SubShader
@@ -12,8 +10,8 @@
         Tags
         {
             "RenderPipeline" = "UniversalPipeline"
-            "RenderType" = "Transparent"
-            "Queue" = "Transparent+0"
+            "RenderType" = "Opaque"
+            "Queue" = "Geometry+0"
         }
 
         Pass
@@ -25,10 +23,10 @@
     }
 
     // Render State
-    Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
+    Blend One Zero, One Zero
     Cull Front
     ZTest LEqual
-    ZWrite Off
+    ZWrite On
         // ColorMask: <None>
 
 
@@ -55,7 +53,6 @@
         // GraphKeywords: <None>
 
         // Defines
-        #define _SURFACE_TYPE_TRANSPARENT 1
         #define _AlphaClip 1
         #define ATTRIBUTES_NEED_NORMAL
         #define ATTRIBUTES_NEED_TANGENT
@@ -73,8 +70,6 @@
 
         // Graph Properties
         CBUFFER_START(UnityPerMaterial)
-        float Vector1_35A08CA9;
-        float Vector1_81E7ABE5;
         float4 _OutlineColor;
         float _ScaleFactor;
         CBUFFER_END
@@ -104,10 +99,10 @@
         VertexDescription VertexDescriptionFunction(VertexDescriptionInputs IN)
         {
             VertexDescription description = (VertexDescription)0;
-            float _Property_E309B92F_Out_0 = _ScaleFactor;
-            float3 _Multiply_2DC7843B_Out_2;
-            Unity_Multiply_float((_Property_E309B92F_Out_0.xxx), IN.ObjectSpacePosition, _Multiply_2DC7843B_Out_2);
-            description.VertexPosition = _Multiply_2DC7843B_Out_2;
+            float _Property_4A22F544_Out_0 = _ScaleFactor;
+            float3 _Multiply_3DFD0223_Out_2;
+            Unity_Multiply_float((_Property_4A22F544_Out_0.xxx), IN.ObjectSpacePosition, _Multiply_3DFD0223_Out_2);
+            description.VertexPosition = _Multiply_3DFD0223_Out_2;
             description.VertexNormal = IN.ObjectSpaceNormal;
             description.VertexTangent = IN.ObjectSpaceTangent;
             return description;
@@ -128,8 +123,8 @@
         SurfaceDescription SurfaceDescriptionFunction(SurfaceDescriptionInputs IN)
         {
             SurfaceDescription surface = (SurfaceDescription)0;
-            float4 _Property_E4CD406D_Out_0 = _OutlineColor;
-            surface.Color = (_Property_E4CD406D_Out_0.xyz);
+            float4 _Property_75392E5C_Out_0 = _OutlineColor;
+            surface.Color = (_Property_75392E5C_Out_0.xyz);
             surface.Alpha = 1;
             surface.AlphaClipThreshold = 0.5;
             return surface;
@@ -274,7 +269,7 @@
         }
 
             // Render State
-            Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
+            Blend One Zero, One Zero
             Cull Back
             ZTest LEqual
             ZWrite On
@@ -302,7 +297,6 @@
             // GraphKeywords: <None>
 
             // Defines
-            #define _SURFACE_TYPE_TRANSPARENT 1
             #define _AlphaClip 1
             #define ATTRIBUTES_NEED_NORMAL
             #define ATTRIBUTES_NEED_TANGENT
@@ -320,8 +314,6 @@
 
             // Graph Properties
             CBUFFER_START(UnityPerMaterial)
-            float Vector1_35A08CA9;
-            float Vector1_81E7ABE5;
             float4 _OutlineColor;
             float _ScaleFactor;
             CBUFFER_END
@@ -351,10 +343,10 @@
             VertexDescription VertexDescriptionFunction(VertexDescriptionInputs IN)
             {
                 VertexDescription description = (VertexDescription)0;
-                float _Property_E309B92F_Out_0 = _ScaleFactor;
-                float3 _Multiply_2DC7843B_Out_2;
-                Unity_Multiply_float((_Property_E309B92F_Out_0.xxx), IN.ObjectSpacePosition, _Multiply_2DC7843B_Out_2);
-                description.VertexPosition = _Multiply_2DC7843B_Out_2;
+                float _Property_4A22F544_Out_0 = _ScaleFactor;
+                float3 _Multiply_3DFD0223_Out_2;
+                Unity_Multiply_float((_Property_4A22F544_Out_0.xxx), IN.ObjectSpacePosition, _Multiply_3DFD0223_Out_2);
+                description.VertexPosition = _Multiply_3DFD0223_Out_2;
                 description.VertexNormal = IN.ObjectSpaceNormal;
                 description.VertexTangent = IN.ObjectSpaceTangent;
                 return description;
@@ -518,7 +510,7 @@
             }
 
                 // Render State
-                Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
+                Blend One Zero, One Zero
                 Cull Back
                 ZTest LEqual
                 ZWrite On
@@ -546,7 +538,6 @@
                 // GraphKeywords: <None>
 
                 // Defines
-                #define _SURFACE_TYPE_TRANSPARENT 1
                 #define _AlphaClip 1
                 #define ATTRIBUTES_NEED_NORMAL
                 #define ATTRIBUTES_NEED_TANGENT
@@ -564,8 +555,6 @@
 
                 // Graph Properties
                 CBUFFER_START(UnityPerMaterial)
-                float Vector1_35A08CA9;
-                float Vector1_81E7ABE5;
                 float4 _OutlineColor;
                 float _ScaleFactor;
                 CBUFFER_END
@@ -595,10 +584,10 @@
                 VertexDescription VertexDescriptionFunction(VertexDescriptionInputs IN)
                 {
                     VertexDescription description = (VertexDescription)0;
-                    float _Property_E309B92F_Out_0 = _ScaleFactor;
-                    float3 _Multiply_2DC7843B_Out_2;
-                    Unity_Multiply_float((_Property_E309B92F_Out_0.xxx), IN.ObjectSpacePosition, _Multiply_2DC7843B_Out_2);
-                    description.VertexPosition = _Multiply_2DC7843B_Out_2;
+                    float _Property_4A22F544_Out_0 = _ScaleFactor;
+                    float3 _Multiply_3DFD0223_Out_2;
+                    Unity_Multiply_float((_Property_4A22F544_Out_0.xxx), IN.ObjectSpacePosition, _Multiply_3DFD0223_Out_2);
+                    description.VertexPosition = _Multiply_3DFD0223_Out_2;
                     description.VertexNormal = IN.ObjectSpaceNormal;
                     description.VertexTangent = IN.ObjectSpaceTangent;
                     return description;
@@ -756,3 +745,4 @@
     }
         FallBack "Hidden/Shader Graph/FallbackError"
 }
+
