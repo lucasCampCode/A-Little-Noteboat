@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8559557784652450158
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: -6465566751694194690, guid: fcff351d036878648978f66eb9a5eb74,
+  m_Name: ToonTreeMat
+  m_Shader: {fileID: -6465566751694194690, guid: 0b452426628913141821c3ceedcdae42,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,10 +20,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_361190B5:
-        m_Texture: {fileID: 2800000, guid: 62bff900bebec7648b13bf1f7c7b724b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -66,12 +49,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Boolean_78C7EAC1: 0
-    - Vector1_1A3866E7: 14
-    - Vector1_3BF6FB88: 1
-    - Vector1_3C3EFC0E: 0
-    - Vector1_65875E8: 1
-    - Vector1_AB6070A2: 0
+    - Vector1_35A08CA9: 1
+    - Vector1_81E7ABE5: 0.5
+    - Vector1_8A9C0425: 0.005
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -94,13 +74,23 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_9E48CD65: {r: 0, g: 0, b: 0, a: 0}
-    - Color_BA155CD6: {r: 0, g: 0, b: 0, a: 0}
-    - Color_BF9C7A0D: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_3AC0702D: {r: 15, g: 14.75, b: 0, a: 0}
-    - Vector2_92FEDC4C: {r: -14.75, g: -15, b: 0, a: 0}
-    - Vector2_D876B330: {r: 14, g: 15, b: 0, a: 0}
+    - Color_98C0F403: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_6FD6BB74: {r: -14.75, g: -15, b: 0, a: 0}
+    - Vector2_826E68CA: {r: 15, g: 15, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+--- !u!114 &4275044285032189015
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
