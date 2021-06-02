@@ -19,7 +19,8 @@ public class PickUpItemBehaviour : MonoBehaviour
                 amount++;
         foreach(GameObject item in _powerUps)
         {
-            item.GetComponent<TripleShot>().Amount = amount;
+            if(item.GetComponent<TripleShot>())
+                item.GetComponent<TripleShot>().Amount = amount;
             item.GetComponent<PowerUp>().Upgrade();
         }
     }
