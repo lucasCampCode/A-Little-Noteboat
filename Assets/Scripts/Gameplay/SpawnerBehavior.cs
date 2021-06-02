@@ -133,11 +133,11 @@ public class SpawnerBehavior : MonoBehaviour
     private void RecalculateSpawnTimes()
     {
         //Decrease the time between spawns during waves and spawns during waves
-        _calmSpawnTime -= (_timeSinceGameStart * 0.0005f);
-        _waveSpawnTime -= (_timeSinceGameStart * 0.001f);
+        _calmSpawnTime /= 1.05f;
+        _waveSpawnTime /= 1.025f;
 
-        //Increase the time between waves
-        _timeBetweenWaves += (_timeSinceGameStart * 0.025f);
-        _waveDuration += (_timeSinceGameStart * 0.001f);
+        //Increase the time between waves and the wave duration
+        _waveDuration *= 1.05f;
+        _timeBetweenWaves *= 1.025f;
     }
 }
