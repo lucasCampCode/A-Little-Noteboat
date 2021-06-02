@@ -7,9 +7,9 @@ public class EnemyMovementBehavior : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     [Tooltip("The target of the EnemyShootBehavior")]
-    [SerializeField] private GameObject _player;
+    private GameObject _player;
 
-    [SerializeField] private float _moveSpeed;
+    private float _moveSpeed = 10;
 
     Vector3 velocity;
 
@@ -54,17 +54,25 @@ public class EnemyMovementBehavior : MonoBehaviour
         Vector3 moveDirection = new Vector3();
         Vector3 desiredVelocity = new Vector3();
         Vector3 steeringForce = new Vector3();
+        float maxForce = 2;
 
         //If the first loop is not complete
         if (!_firstLoopComplete)
         {
+            //Calculate an offset position to prevent slowing on approach
+            Vector3 offsetPoint = new Vector3(_waitSpot.position.x - 1, _waitSpot.position.y, _waitSpot.position.z - 0.5f);
+            Vector3 toOffsetPoint = (offsetPoint - transform.position).normalized;
+
             //If the distance to the waitSpot's position is greater than 1 and isn't looping
-            if ((transform.position - _waitSpot.position).magnitude > 1f && !_isLooping)
+            if ((transform.position - offsetPoint).magnitude > 1f && !_isLooping)
             {
                 //Calculate the steering force and velocity
-                desiredVelocity = toWaitSpot * _moveSpeed;
+                desiredVelocity = toOffsetPoint * _moveSpeed; 
                 steeringForce = desiredVelocity - velocity;
                 velocity += steeringForce;
+
+                if (steeringForce.magnitude > maxForce)
+                    steeringForce = steeringForce.normalized * maxForce;
 
                 //Move to the waitSpot
                 _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
@@ -77,10 +85,16 @@ public class EnemyMovementBehavior : MonoBehaviour
 
                 //Calculate the direction perpendicular to the vector towards the waitSpot
                 moveDirection = new Vector3(toWaitSpot.z, 0, -1 * toWaitSpot.x).normalized;
-                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+                desiredVelocity = moveDirection * _moveSpeed;
 
-                //Move sideways based on that vector
-                _rigidbody.MovePosition(transform.position + velocity);
+                steeringForce = desiredVelocity - velocity;
+                if (steeringForce.magnitude > maxForce)
+                    steeringForce = steeringForce.normalized * maxForce;
+
+                velocity += steeringForce;
+
+                //Move using that vector
+                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
 
                 //Increment time on first loop
                 _timeOnFirstLoop += Time.deltaTime;
@@ -156,12 +170,18 @@ public class EnemyMovementBehavior : MonoBehaviour
             //If not on the exit spot
             if ((transform.position - _exitSpot.position).magnitude > 0.25f)
             {
-                //Calculate the direction and velocity towards the exitSpot
-                moveDirection = (_exitSpot.position - transform.position).normalized;
-                velocity = moveDirection * _moveSpeed * Time.deltaTime;
+                Vector3 toExit = (_exitSpot.position - transform.position).normalized;
 
-                //Move to the exit spot
-                _rigidbody.MovePosition(transform.position + velocity);
+                //Calculate the steering force and velocity
+                desiredVelocity = toExit * _moveSpeed; 
+                steeringForce = desiredVelocity - velocity;
+                velocity += steeringForce;
+
+                if (steeringForce.magnitude > maxForce)
+                    steeringForce = steeringForce.normalized * maxForce;
+
+                //Move to the waitSpot
+                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
             }
             //If on the exit spot
             else
