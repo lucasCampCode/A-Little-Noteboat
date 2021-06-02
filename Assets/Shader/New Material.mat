@@ -68,6 +68,7 @@ Material:
     m_Floats:
     - Boolean_78C7EAC1: 0
     - Vector1_1A3866E7: 14
+    - Vector1_3BF6FB88: 1
     - Vector1_3C3EFC0E: 0
     - Vector1_65875E8: 1
     - Vector1_AB6070A2: 0
@@ -93,6 +94,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_9E48CD65: {r: 0, g: 0, b: 0, a: 0}
     - Color_BA155CD6: {r: 0, g: 0, b: 0, a: 0}
     - Color_BF9C7A0D: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_3AC0702D: {r: 15, g: 14.75, b: 0, a: 0}
