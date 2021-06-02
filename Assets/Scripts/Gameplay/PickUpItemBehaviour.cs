@@ -10,6 +10,8 @@ public class PickUpItemBehaviour : MonoBehaviour
     void Update()
     {
         int amount = 0;
+        if (_powerUps.Count == 0)
+            return;
         if (_powerUps[0] == null)
             _powerUps.Remove(_powerUps[0]);
         foreach (GameObject item in _powerUps)
@@ -20,7 +22,6 @@ public class PickUpItemBehaviour : MonoBehaviour
             item.GetComponent<TripleShot>().Amount = amount;
             item.GetComponent<PowerUp>().Upgrade();
         }
-        amount = 0;
     }
     private void OnCollisionEnter(Collision collision)
     {
