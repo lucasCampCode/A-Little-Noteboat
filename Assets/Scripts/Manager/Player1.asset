@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974f5bea925d5ee4c8a3084f1c5b4276, type: 3}
   m_Name: Player1
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 1
   RateOfFire: 0.5
   FireForce: 15
   BulletScale: 1
