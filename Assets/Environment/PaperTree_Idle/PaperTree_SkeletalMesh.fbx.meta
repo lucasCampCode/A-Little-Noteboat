@@ -1,9 +1,22 @@
 fileFormatVersion: 2
-guid: 551a4322423287f43aa41edbffec93de
+guid: 2832a0227687f0b4e99147c05ea2c305
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable: []
-  externalObjects: {}
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree
+    second: {fileID: 2100000, guid: 94ede1add6df5814a8680219aaafcb16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trunk
+    second: {fileID: 2100000, guid: 94ede1add6df5814a8680219aaafcb16, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -67,7 +80,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - d9952d64287b18347a4796b6103c5435
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -89,7 +103,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
