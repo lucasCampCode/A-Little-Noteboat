@@ -59,7 +59,7 @@ public class EnemyMovementBehavior : MonoBehaviour
         //If the first loop is not complete
         if (!_firstLoopComplete)
         {
-            //Calculate an offset position to prevent slowing on approach
+            //Calculate an offset position to prevent snapping when close enough to orbit
             Vector3 offsetPoint = new Vector3(_waitSpot.position.x - 1, _waitSpot.position.y, _waitSpot.position.z - 0.5f);
             Vector3 toOffsetPoint = (offsetPoint - transform.position).normalized;
 
