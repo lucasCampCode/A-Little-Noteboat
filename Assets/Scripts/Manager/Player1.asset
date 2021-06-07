@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Player1
   m_EditorClassIdentifier: 
   Damage: 1
-  RateOfFire: 0.5
-  FireForce: 15
-  BulletScale: 1
+  RateOfFire: 0.3
+  FireForce: 16

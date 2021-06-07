@@ -24,14 +24,9 @@ public class GameManagerBehaviour : MonoBehaviour
     private GameObject _HUD;
 
     [SerializeField]
-    private GameObject _pauseScreen;
-
-    [SerializeField]
     private GameObject _gameOverScreen;
 
     private static bool _gameOver = false;
-
-    private bool _gamePaused;
 
     //Keeps track of the players score
     private float _score;
@@ -57,22 +52,6 @@ public class GameManagerBehaviour : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void PauseGame()
-    {
-        _gamePaused = !_gamePaused;
-        if (_gamePaused)
-        {
-            _HUD.SetActive(false);
-            _pauseScreen.SetActive(true);
-        }
-        else
-        {
-            _pauseScreen.SetActive(false);
-            _HUD.SetActive(true);
-            Time.timeScale = 1;
-        }
-    }
-
     public void QuitGame()
     {
         Application.Quit();
@@ -82,7 +61,7 @@ public class GameManagerBehaviour : MonoBehaviour
     void Update()
     {
         //Checks if the game started and if there is a start screen
-        if (!_gameStart && _startScreen || _gamePaused)
+        if (!_gameStart && _startScreen)
         {
             //Sets the time scale to 0 to pause the game
             Time.timeScale = 0;

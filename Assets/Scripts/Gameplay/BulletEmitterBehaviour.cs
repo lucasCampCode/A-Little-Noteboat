@@ -8,14 +8,12 @@ public class BulletEmitterBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject _bullet;
     public GameObject Bullet { get { return _bullet; } }
-    [SerializeField]
-    private bool _piercingBullet;
 
     /// <summary>
     /// Spawns a bullet and applies the given force.
     /// </summary>
     /// <param name="force"></param>
-    public void Fire(Vector3 force, float Scale = 1)
+    public void Fire(Vector3 force)
     {
         if (gameObject.activeSelf)
         {
@@ -23,16 +21,11 @@ public class BulletEmitterBehaviour : MonoBehaviour
             GameObject firedBullet = Instantiate(_bullet, transform.position, transform.rotation);
             //Get a reference to the attached bullet script
             BulletBehaviour bulletScript = firedBullet.GetComponent<BulletBehaviour>();
-
+            //applies the host tag
+            bulletScript.Host = gameObject.tag;
             //If the script isn't null, apply a force to its rigidbody
             if (bulletScript)
-            {
-                //applies the host tag
-                bulletScript.PiercingBullet = _piercingBullet;
-                bulletScript.Host = gameObject.tag;
                 bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
-                firedBullet.transform.localScale = new Vector3(1,1,1) * Scale;
-            }
         }
     }
 }
