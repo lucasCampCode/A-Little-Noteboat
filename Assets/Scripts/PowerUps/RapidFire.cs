@@ -7,18 +7,20 @@ public class RapidFire : PowerUp
     [SerializeField]
     private PlayerManagerScriptable _manager;
     [SerializeField]
-    private float _newRateOfFire = 0.3f;
+    [Tooltip("the amount that the rate of fire will change")]
+    private float _rateOfFireAmount = -0.1f;
     [SerializeField]
-    private float _newFireForce = 16;
+    [Tooltip("the amount that the fire forece will change")]
+    private float _FireForceAmount = 1;
     public override void StartUpgrade()
     {
-        _manager.RateOfFire = _newRateOfFire;
-        _manager.FireForce = _newFireForce;
+        _manager.RateOfFire += _rateOfFireAmount;
+        _manager.FireForce += _FireForceAmount;
     }
     public override void EndUpgrade()
     {
-        _manager.RateOfFire = 0.5f;
-        _manager.FireForce = 15;
+        _manager.RateOfFire -= _rateOfFireAmount;
+        _manager.FireForce -= _FireForceAmount;
     }
 
 }
