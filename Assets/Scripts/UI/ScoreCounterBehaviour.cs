@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class ScoreCounterBehaviour : MonoBehaviour
 {
+    [Tooltip("The GameManager used to upadate the score being displayed")]
     [SerializeField]
     private GameManagerBehaviour _gameManager;
 
+    [Tooltip("The text that will display the score")]
     [SerializeField]
     private Text _displayText;
 
@@ -20,6 +22,7 @@ public class ScoreCounterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Sets the display text to show the current score
         _displayText.text = "" + _gameManager.Score;
     }
 }
