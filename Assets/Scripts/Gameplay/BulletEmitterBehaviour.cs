@@ -8,6 +8,8 @@ public class BulletEmitterBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject _bullet;
     public GameObject Bullet { get { return _bullet; } }
+    [SerializeField]
+    private bool _piercingBullet;
 
     /// <summary>
     /// Spawns a bullet and applies the given force.
@@ -26,6 +28,7 @@ public class BulletEmitterBehaviour : MonoBehaviour
             if (bulletScript)
             {
                 //applies the host tag
+                bulletScript.PiercingBullet = _piercingBullet;
                 bulletScript.Host = gameObject.tag;
                 bulletScript.Rigidbody.AddForce(force, ForceMode.Impulse);
                 firedBullet.transform.localScale = new Vector3(1,1,1) * Scale;
