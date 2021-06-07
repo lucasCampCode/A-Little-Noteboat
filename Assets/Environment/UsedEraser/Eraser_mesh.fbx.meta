@@ -1,9 +1,17 @@
 fileFormatVersion: 2
-guid: 3cb7e0788fa38d446bd68aeef24baa73
+guid: 79e0d1d15416b644692dbd3d21a9d8de
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable: []
-  externalObjects: {}
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UsedEraser
+    second: {fileID: 2100000, guid: 674013196ae00664bb5704fbe06d54f0, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -67,7 +75,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - 154ec7ed008ecac4da16ee71a85fecf0
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -89,7 +98,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
