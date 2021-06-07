@@ -7,7 +7,11 @@ public class TripleShot : PowerUp
     [SerializeField]
     private GameObject _player;
     public GameObject Player { set { _player = value; } }
+
+    public int Amount { get => _amount; set => _amount = value; }
+
     private InputDelegateBehaviour _delegate;
+    private int _amount = 0;
     public override void StartUpgrade()
     {
         _delegate = _player.GetComponent<InputDelegateBehaviour>();
