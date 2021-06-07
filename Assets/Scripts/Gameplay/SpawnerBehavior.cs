@@ -33,6 +33,8 @@ public class SpawnerBehavior : MonoBehaviour
     [SerializeField] private bool _canSpawn;
     [Tooltip("The prefab for the enemy")]
     [SerializeField] private GameObject _spawn;
+    [Tooltip("The GameManager to pass to enemies")]
+    [SerializeField] private GameManagerBehaviour _gameManager;
 
     //Variables for the spawn
     [Tooltip("The player, used for setting the target of the enemy's shootbehavior")]
@@ -92,6 +94,7 @@ public class SpawnerBehavior : MonoBehaviour
             //Create a new enemy
             GameObject spawnedEnemy = Instantiate(_spawn, transform.position, new Quaternion());
             spawnedEnemy.GetComponent<EnemyShootingBehaviour>().Target = _player;
+            spawnedEnemy.GetComponent<EnemyDropItemBehaviour>().GameManager = _gameManager;
 
             //If only one wait spot exists
             if (_waitSpots.Count == 1)
