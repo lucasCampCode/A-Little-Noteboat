@@ -50,6 +50,7 @@ MonoBehaviour:
   _despawnTime: 2
   _hostTag: 
   _piercingBullet: 0
+  _rotate: 20
 --- !u!54 &6267792847613717437
 Rigidbody:
   m_ObjectHideFlags: 0

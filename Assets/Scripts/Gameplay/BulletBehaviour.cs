@@ -53,7 +53,7 @@ public class BulletBehaviour : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(_rotate, 0, 0s);
+        transform.Rotate(_rotate, _rotate, _rotate);
     }
 
     private void OnTriggerEnter(Collider other)
