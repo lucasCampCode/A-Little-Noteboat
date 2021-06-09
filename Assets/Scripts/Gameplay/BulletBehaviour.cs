@@ -15,6 +15,9 @@ public class BulletBehaviour : MonoBehaviour
     private string _hostTag;
     [SerializeField]
     private bool _piercingBullet;
+    [SerializeField]
+    private float _rotate;
+
     public bool PiercingBullet 
     { 
         get { return _piercingBullet; } 
@@ -46,6 +49,11 @@ public class BulletBehaviour : MonoBehaviour
     {
         //Destroy this object once after enough time has passed
         Destroy(gameObject, _despawnTime);
+    }
+
+    private void Update()
+    {
+        transform.Rotate(_rotate, 0, 0s);
     }
 
     private void OnTriggerEnter(Collider other)
