@@ -8,4 +8,5 @@ public class PlayerManagerScriptable : ScriptableObject
     public float Damage;
     public float RateOfFire;
     public float FireForce;
+    public float BulletScale;
 }

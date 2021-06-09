@@ -80,8 +80,8 @@ public class EnemyMovementBehavior : MonoBehaviour
 
                 //Increment time on first loop
                 _timeOnFirstLoop += Time.deltaTime;
-                //If the time on the first loop is greater than three seconds
-                if (_timeOnFirstLoop > 3)
+                //If the time on the first loop is greater than 2.5 seconds
+                if (_timeOnFirstLoop > 2.5)
                 {
                     //Set the first loop to be complete
                     _firstLoopComplete = true;
