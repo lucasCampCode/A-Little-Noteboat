@@ -11,20 +11,7 @@ public class BulletBehaviour : MonoBehaviour
     [Tooltip("The amount of time it takes for this bullet to despawn after being fired.")]
     [SerializeField]
     private float _despawnTime;
-    [SerializeField]
-    private string _hostTag;
-    [SerializeField]
-    private bool _piercingBullet;
-    public bool PiercingBullet 
-    { 
-        get { return _piercingBullet; } 
-        set { _piercingBullet = value; } 
-    }
-    public string Host
-    {
-        get { return _hostTag; }
-        set { _hostTag = value; }
-    }
+
     public Rigidbody Rigidbody
     {
         get{ return _rigidbody; }
@@ -52,31 +39,9 @@ public class BulletBehaviour : MonoBehaviour
     {
         //Grab the health behaviour attached to the object
         HealthBehaviour health = other.GetComponent<HealthBehaviour>();
-        if (!other.gameObject.CompareTag(_hostTag) && !other.gameObject.CompareTag("Bullet"))
-        {
-            if (_piercingBullet)
-                PercingBulletAction(health);
-            else
-                RegularBulletAction(health);
-        }
-    }
-    private void PercingBulletAction(HealthBehaviour health)
-    {
-        if (health)
-            health.TakeDamage(1);
-        _damage--;
-        if (_damage <= 0)
-        {
-            //destroys the bullet
-            Destroy(gameObject);
-        }
-    }
-    private void RegularBulletAction(HealthBehaviour health)
-    {
 
+        //If the health behaviour isn't null, deal damage
         if (health)
             health.TakeDamage(Damage);
-        //destroys the bullet
-        Destroy(gameObject);
     }
 }
