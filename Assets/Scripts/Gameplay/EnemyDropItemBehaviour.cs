@@ -6,7 +6,13 @@ public class EnemyDropItemBehaviour : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _items;
+    private GameManagerBehaviour _gameManager;
     private HealthBehaviour _health;
+
+    public GameManagerBehaviour GameManager
+    {
+        set { _gameManager = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +24,8 @@ public class EnemyDropItemBehaviour : MonoBehaviour
     {
         if(_health.Health <= 0)
         {
+            _gameManager.Score += 100;
+
             //grabs a random number based from the amount of item in the array
             int rng = Random.Range(0, _items.Length);
             //if the item exists in the array
