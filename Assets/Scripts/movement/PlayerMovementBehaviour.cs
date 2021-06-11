@@ -9,6 +9,8 @@ public class PlayerMovementBehaviour : MonoBehaviour
     [Tooltip("the turrent that the mouse will me looking at")]
     [SerializeField]
     private float _speed = 1;
+    [SerializeField]
+    private float _distanceFromCenter = 1;
 
     private Vector3 _velocity;
     // Start is called before the first frame update
@@ -21,7 +23,10 @@ public class PlayerMovementBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         // updates movement
-        _rigidbody.MovePosition(transform.position + _velocity);
+        float xClamp = Mathf.Clamp(transform.position.x,-_distanceFromCenter,_distanceFromCenter);
+        Vector3 nextPos = new Vector3(xClamp, transform.position.y, transform.position.z) + _velocity;
+        _rigidbody.MovePosition(nextPos);
+        
     }
     /// <summary>
     /// updates the movement to the prefab
