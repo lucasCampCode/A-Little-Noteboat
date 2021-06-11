@@ -180,7 +180,9 @@ public class EnemyMovementBehavior : MonoBehaviour
                 if (steeringForce.magnitude > maxForce)
                     steeringForce = steeringForce.normalized * maxForce;
 
-                //Move to the waitSpot
+                velocity += steeringForce;
+
+                //Move to the exit
                 _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
             }
             //If on the exit spot
