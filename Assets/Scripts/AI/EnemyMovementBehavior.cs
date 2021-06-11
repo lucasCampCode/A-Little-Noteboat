@@ -190,7 +190,7 @@ public class EnemyMovementBehavior : MonoBehaviour
 
                 velocity += steeringForce;
 
-                //Move to the waitSpot
+                //Move to the exit
                 _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
             }
             //If on the exit spot
