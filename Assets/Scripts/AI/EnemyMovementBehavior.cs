@@ -50,6 +50,7 @@ public class EnemyMovementBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Direction from the enemy to the WaitSpot
         Vector3 toWaitSpot = (_waitSpot.position - transform.position).normalized;
         Vector3 moveDirection = new Vector3();
         Vector3 desiredVelocity = new Vector3();
@@ -69,6 +70,10 @@ public class EnemyMovementBehavior : MonoBehaviour
                 //Calculate the steering force and velocity
                 desiredVelocity = toOffsetPoint * _moveSpeed;
                 steeringForce = desiredVelocity - velocity;
+
+                if (steeringForce.magnitude > maxForce)
+                    steeringForce = steeringForce.normalized * maxForce;
+
                 velocity += steeringForce;
 
                 if (steeringForce.magnitude > maxForce)
@@ -104,6 +109,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                     //Set the first loop to be complete
                     _firstLoopComplete = true;
                     _isLooping = false;
+                    //velocity = new Vector3();
                 }
             }
             //Look where the enemy is going
@@ -118,6 +124,10 @@ public class EnemyMovementBehavior : MonoBehaviour
                 //Calculate the steering force and velocity
                 desiredVelocity = toWaitSpot * _moveSpeed;
                 steeringForce = desiredVelocity - velocity;
+
+                if (steeringForce.magnitude > maxForce)
+                    steeringForce = steeringForce.normalized * maxForce;
+
                 velocity += steeringForce;
 
                 //Move to the waitSpot
@@ -125,7 +135,6 @@ public class EnemyMovementBehavior : MonoBehaviour
 
                 //Look where the enemy is going
                 transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
-                //transform.forward = Vector3.Lerp(transform.forward, toWaitSpot, 0.25f);
             }
             //If on the wait spot
             else
@@ -175,12 +184,13 @@ public class EnemyMovementBehavior : MonoBehaviour
                 //Calculate the steering force and velocity
                 desiredVelocity = toExit * _moveSpeed;
                 steeringForce = desiredVelocity - velocity;
-                velocity += steeringForce;
 
                 if (steeringForce.magnitude > maxForce)
                     steeringForce = steeringForce.normalized * maxForce;
 
-                //Move to the waitSpot
+                velocity += steeringForce;
+
+                //Move to the exit
                 _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
             }
             //If on the exit spot
