@@ -599,12 +599,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84b93a034ccbebf41bf98cd84540a980, type: 3}
---- !u!95 &670569696 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 543325827099522539, guid: 57842fa68a6f38d4fbba69a5f0520566,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066558134}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &997288856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,11 +2132,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 636742271771360133, guid: 57842fa68a6f38d4fbba69a5f0520566,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5966947088468047760, guid: 57842fa68a6f38d4fbba69a5f0520566,
         type: 3}
-      propertyPath: playerAnimator
-      value: 
-      objectReference: {fileID: 670569696}
+      propertyPath: _tiltReturnSpeed
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: 6809190592044048248, guid: 57842fa68a6f38d4fbba69a5f0520566,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2378,6 +2377,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2537803067255533586, guid: dd15e0e030fd34f49b3baf3928cb25f9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.009997989
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537803067255533586, guid: dd15e0e030fd34f49b3baf3928cb25f9,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0000010033177
+      objectReference: {fileID: 0}
     - target: {fileID: 2537803068497196640, guid: dd15e0e030fd34f49b3baf3928cb25f9,
         type: 3}
       propertyPath: m_LocalPosition.x
