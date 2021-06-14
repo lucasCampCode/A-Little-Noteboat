@@ -17,6 +17,9 @@ public class InputDelegateBehaviour : MonoBehaviour
 
     [SerializeField]
     private PlayerManagerScriptable _playerManager;
+    [SerializeField]
+    private Animator playerAnimator;
+
     private float _time;
     private bool _isFireHold;
     private void Awake()
@@ -47,7 +50,7 @@ public class InputDelegateBehaviour : MonoBehaviour
         _time += Time.deltaTime;
         //apply movement input to the movement script
         _playerMovement.Move(_playerControls.Player.move.ReadValue<Vector2>());
-
+        playerAnimator.SetBool("isfireing", _isFireHold);
         if (_isFireHold && _time > _playerManager.RateOfFire)//if the input is held down and time is true
         {
             foreach (BulletEmitterBehaviour emitter in _regularEmitters)//for each regular emitter
