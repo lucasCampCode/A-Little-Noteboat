@@ -57,6 +57,11 @@ public class GameManagerBehaviour : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadCredit()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void PauseGame()
     {
         _gamePaused = !_gamePaused;
