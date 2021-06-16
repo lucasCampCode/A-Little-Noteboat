@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ToonTreeMat
-  m_Shader: {fileID: -6465566751694194690, guid: 0b452426628913141821c3ceedcdae42,
+  m_Shader: {fileID: -6465566751694194690, guid: 224195b0f4284c341a41373ab7227bcd,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
