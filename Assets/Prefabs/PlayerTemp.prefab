@@ -299,7 +299,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _distanceFromCenter: 6
-  playerAnimator: {fileID: 0}
 --- !u!114 &5966947088468047761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +395,8 @@ MonoBehaviour:
   - {fileID: 5560759243089348836}
   - {fileID: 2933635483567303623}
   _playerManager: {fileID: 11400000, guid: 8bc456475d0bd854294b664e1dc09c1f, type: 2}
+  playerAnimator: {fileID: -6057140222963153312, guid: ba8b68c04aeeeaa49a86d66d4a25ffc1,
+    type: 3}
 --- !u!65 &1437197931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -407,8 +408,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7031504, y: 1.8526549, z: 1.2884798}
-  m_Center: {x: 0.000000059604645, y: 2.2673216, z: -1.3404634}
+  m_Size: {x: 0.7031504, y: 1.2349262, z: 1.2884798}
+  m_Center: {x: 0.000000059604645, y: 1.9584568, z: -1.3404634}
 --- !u!65 &1437197932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -420,8 +421,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6051252, y: 1.2689192, z: 5.7025237}
-  m_Center: {x: -0.023273945, y: 0.71191156, z: -0.40424657}
+  m_Size: {x: 1.6051252, y: 1.2689192, z: 3.902871}
+  m_Center: {x: -0.023273945, y: 0.71191156, z: -0.38896382}
 --- !u!114 &1437197930
 MonoBehaviour:
   m_ObjectHideFlags: 0
