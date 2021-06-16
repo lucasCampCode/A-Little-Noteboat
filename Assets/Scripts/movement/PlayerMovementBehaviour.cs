@@ -16,7 +16,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     private float _tilt = 30;
     [SerializeField]
     private float _tiltSpeed = 0.10f;
-    private float _tiltReturnSpeed = 0.05f;
+    private float _tiltReturnSpeed;
 
     private Vector3 _velocity;
     // Start is called before the first frame update
@@ -34,9 +34,9 @@ public class PlayerMovementBehaviour : MonoBehaviour
         Vector3 nextPos = new Vector3(xClamp, transform.position.y, transform.position.z) + _velocity;
         _rigidbody.MovePosition(nextPos);
 
-        tilt();
+        Banking();
     }
-    private void tilt() 
+    private void Banking() 
     {
         if (_tiltAmount > 0.5f)
             _tiltAmount -= _tiltReturnSpeed;
@@ -55,6 +55,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
         _rigidbody.rotation = Quaternion.Euler(0,0, Mathf.Lerp(-_tilt, _tilt, _tiltAmount));
 
     }
+
     /// <summary>
     /// updates the movement to the prefab
     /// </summary>
