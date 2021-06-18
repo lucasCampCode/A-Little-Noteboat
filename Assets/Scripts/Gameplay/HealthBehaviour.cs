@@ -7,7 +7,11 @@ public class HealthBehaviour : MonoBehaviour
     [SerializeField]
     private float _health;
     [SerializeField]
+    private Animator _animator;
+    [SerializeField]
     private bool _destroyOnDeath;
+
+    private bool _tripedTrigger = false;
 
     public float Health
     {
@@ -33,8 +37,11 @@ public class HealthBehaviour : MonoBehaviour
             Destroy(gameObject);
         else if (!_destroyOnDeath && _health <= 0)
         {
-            if(!gameObject.CompareTag("Enemy"))
-                gameObject.SetActive(false);
+            if (!_tripedTrigger)
+            {
+                _animator?.SetTrigger("hasDied");
+                _tripedTrigger = !_tripedTrigger;
+            }
         }
     }
 }
