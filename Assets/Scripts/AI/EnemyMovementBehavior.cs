@@ -8,6 +8,8 @@ public class EnemyMovementBehavior : MonoBehaviour
     private Rigidbody _rigidbody;
     [Tooltip("The target of the EnemyShootBehavior")]
     private GameObject _player;
+    [SerializeField,Tooltip("changes the speed pramameter")]
+    private Animator _animator;
 
     private float _moveSpeed = 10;
 
@@ -201,6 +203,8 @@ public class EnemyMovementBehavior : MonoBehaviour
             }
             //Look where the enemy is going
             transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
+            
         }
+        _animator?.SetFloat("speed", _rigidbody.velocity.normalized.magnitude);
     }
 }

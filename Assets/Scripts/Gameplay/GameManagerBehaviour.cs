@@ -29,12 +29,18 @@ public class GameManagerBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject _gameOverScreen;
 
+    [SerializeField]
+    private Event _onPlayerDeath;
+    
     private static bool _gameOver = false;
 
     private bool _gamePaused;
 
     //Keeps track of the players score
     private float _score;
+    [SerializeField,Tooltip("how long till gameOverScreen will pop up after player dies")]
+    private float _timeHeld = 1;
+    private float _time;
 
     public static bool GameOver
     {
@@ -102,6 +108,12 @@ public class GameManagerBehaviour : MonoBehaviour
 
         _gameOver = _playerHealth.Health <= 0;
 
-        _gameOverScreen.SetActive(_gameOver);
+        if (_gameOver)
+        {
+            _onPlayerDeath?.Raise();
+            _time += Time.deltaTime;
+            if (_time > _timeHeld)
+                _gameOverScreen.SetActive(_gameOver);
+        }
     }
 }
