@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5991868211448844664}
   - component: {fileID: 1929972367639952886}
+  - component: {fileID: 8899495952322605411}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -48,6 +49,56 @@ MonoBehaviour:
   _speed: -2
   _maxPosZ: -16
   _telePosZ: 16
+--- !u!114 &8899495952322605411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147609847584843229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff190e76a96499c4682fe9089198612d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2173069451420474386}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: isSad
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7846546815767306198}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: isSad
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1929972367639952886}
+        m_MethodName: setSpeed
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _event: {fileID: 11400000, guid: 4b6ed1d3cf87a1846afa6a4cdd28a257, type: 2}
+  _intendedSender: {fileID: 0}
 --- !u!1001 &3880128328709347954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,6 +219,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3880128328709347954}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2173069451420474386 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 2832a0227687f0b4e99147c05ea2c305,
+    type: 3}
+  m_PrefabInstance: {fileID: 3880128328709347954}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5121788833389959606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,6 +342,12 @@ PrefabInstance:
 --- !u!4 &175230268659790508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2832a0227687f0b4e99147c05ea2c305,
+    type: 3}
+  m_PrefabInstance: {fileID: 5121788833389959606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7846546815767306198 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 2832a0227687f0b4e99147c05ea2c305,
     type: 3}
   m_PrefabInstance: {fileID: 5121788833389959606}
   m_PrefabAsset: {fileID: 0}
