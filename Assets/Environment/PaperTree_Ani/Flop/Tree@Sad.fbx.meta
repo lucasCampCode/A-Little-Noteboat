@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 817f70f636843264ab231304e3080e5f
+guid: d845d7746a58ee14faf1c94a40245a4b
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Death
+    second: Sad
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Death
+      name: Sad
       takeName: Take 001
       internalID: 0
       firstFrame: 1
@@ -117,7 +117,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3b11f3340fe7b5a4385d1229b0db9612,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2832a0227687f0b4e99147c05ea2c305,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
