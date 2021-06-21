@@ -63,7 +63,7 @@ public class InputDelegateBehaviour : MonoBehaviour
             //increment time
             _time += Time.deltaTime;
             //apply movement input to the movement script
-            playerAnimator.SetBool("isfiring", _isFireHold);
+            playerAnimator.SetBool("isfireing", _isFireHold);
             _playerMovement.Move(_playerControls.Player.move.ReadValue<Vector2>());
             if (_isFireHold && _time > _playerManager.RateOfFire)//if the input is held down and time is true
             {
