@@ -80,7 +80,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_98C0F403: {r: 0, g: 0, b: 0, a: 0}
-    - Color_9E48CD65: {r: 0.15294118, g: 0.039215688, b: 0, a: 0}
+    - Color_9E48CD65: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0}
     - Vector2_3AC0702D: {r: 14.75, g: 15, b: 0, a: 0}
     - Vector2_6FD6BB74: {r: -15, g: -10, b: 0, a: 0}
     - Vector2_826E68CA: {r: 0, g: 15, b: 0, a: 0}
