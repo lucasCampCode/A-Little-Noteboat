@@ -44,6 +44,7 @@ public class InputDelegateBehaviour : MonoBehaviour
         _playerControls.Player.Fire.started += ctx => _isFireHold = true;
         _playerControls.Player.Fire.canceled += ctx => _isFireHold = false;
 
+        //reset player managers variables
         _playerManager.BulletScale = 1;
         _playerManager.Damage = 1;
         _playerManager.FireForce = 15;
@@ -75,5 +76,7 @@ public class InputDelegateBehaviour : MonoBehaviour
                 _time = 0;//reset time
             }
         }
+        else
+            _playerMovement.Move(new Vector2(0,0));
     }
 }
