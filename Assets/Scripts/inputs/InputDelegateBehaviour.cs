@@ -41,6 +41,11 @@ public class InputDelegateBehaviour : MonoBehaviour
 
         _playerControls.Player.Fire.started += ctx => _isFireHold = true;
         _playerControls.Player.Fire.canceled += ctx => _isFireHold = false;
+
+        _playerManager.BulletScale = 1;
+        _playerManager.Damage = 1;
+        _playerManager.FireForce = 15;
+        _playerManager.RateOfFire = 1;
     }
 
     // Update is called once per frame
