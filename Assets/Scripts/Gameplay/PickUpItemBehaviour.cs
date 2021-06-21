@@ -12,8 +12,9 @@ public class PickUpItemBehaviour : MonoBehaviour
         int amount = 0;
         if (_powerUps.Count == 0)
             return;
-        if (_powerUps[0] == null)
-            _powerUps.Remove(_powerUps[0]);
+        for(int i = 0; i < _powerUps.Count; i++)
+            if (_powerUps[i] == null)
+                _powerUps.Remove(_powerUps[i]);
         foreach (GameObject item in _powerUps)
             if (item.GetComponent<TripleShot>())
                 amount++;
