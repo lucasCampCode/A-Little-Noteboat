@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Audio;
 
 public class InputDelegateBehaviour : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class InputDelegateBehaviour : MonoBehaviour
     private PlayerManagerScriptable _playerManager;
     [SerializeField]
     private Animator playerAnimator;
+    [SerializeField]
+    private AudioSource _shootSound;
 
     private float _time;
     private bool _isFireHold;
@@ -40,6 +43,7 @@ public class InputDelegateBehaviour : MonoBehaviour
     {
         _health = GetComponent<HealthBehaviour>();
         _playerMovement = GetComponent<PlayerMovementBehaviour>();
+        _shootSound.volume = 0.2f;
 
         _playerControls.Player.Fire.started += ctx => _isFireHold = true;
         _playerControls.Player.Fire.canceled += ctx => _isFireHold = false;
@@ -75,6 +79,13 @@ public class InputDelegateBehaviour : MonoBehaviour
                 }
                 _time = 0;//reset time
             }
+            foreach (BulletEmitterBehaviour emitter in _tripleEmitters)//for each Triple emitter
+            {
+                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
+                emitter.Fire(emitter.transform.forward * _playerManager.FireForce, _playerManager.BulletScale);//apply the bullets movement
+            }
+            _shootSound.Play();
+            _time = 0;//reset time
         }
         else
             _playerMovement.Move(new Vector2(0,0));
