@@ -18,7 +18,7 @@ public class ObstacleBehaviour : MonoBehaviour
     {
         //Grab the health behaviour attached to the object
         HealthBehaviour health = collision.collider.GetComponent<HealthBehaviour>();
-        if (!collision.collider.gameObject.CompareTag("Obstacle") || !collision.collider.gameObject.CompareTag("Bullet"))
+        if (!collision.collider.gameObject.CompareTag("Obstacle") || !collision.collider.gameObject.CompareTag("Bullet") || !collision.collider.gameObject.CompareTag("Item"))
         {
             //If the health behaviour isn't null, deal damage
             if (health)
