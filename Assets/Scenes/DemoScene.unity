@@ -4371,25 +4371,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1437197930, guid: 57842fa68a6f38d4fbba69a5f0520566, type: 3}
-      propertyPath: _health
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5966947088468047761, guid: 57842fa68a6f38d4fbba69a5f0520566,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1663783562}
-    - target: {fileID: 5966947088468047761, guid: 57842fa68a6f38d4fbba69a5f0520566,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 240312807}
-    - target: {fileID: 5966947088468047761, guid: 57842fa68a6f38d4fbba69a5f0520566,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6809190592044048248, guid: 57842fa68a6f38d4fbba69a5f0520566,
         type: 3}
       propertyPath: m_LocalPosition.x
