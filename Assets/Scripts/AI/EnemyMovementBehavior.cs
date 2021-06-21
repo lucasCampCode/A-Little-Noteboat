@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemyMovementBehavior : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    private HealthBehaviour _health;
+
     [Tooltip("The target of the EnemyShootBehavior")]
     private GameObject _player;
     [SerializeField,Tooltip("changes the speed pramameter")]
@@ -47,6 +49,7 @@ public class EnemyMovementBehavior : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _health = GetComponent<HealthBehaviour>();
     }
 
     // Update is called once per frame
@@ -82,7 +85,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                     steeringForce = steeringForce.normalized * maxForce;
 
                 //Move to the waitSpot
-                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
+                Move(velocity * Time.deltaTime);
             }
             //If the enemy is looping 
             else
@@ -101,7 +104,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                 velocity += steeringForce;
 
                 //Move using that vector
-                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
+                Move(velocity * Time.deltaTime);
 
                 //Increment time on first loop
                 _timeOnFirstLoop += Time.deltaTime;
@@ -111,7 +114,6 @@ public class EnemyMovementBehavior : MonoBehaviour
                     //Set the first loop to be complete
                     _firstLoopComplete = true;
                     _isLooping = false;
-                    //velocity = new Vector3();
                 }
             }
             //Look where the enemy is going
@@ -133,7 +135,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                 velocity += steeringForce;
 
                 //Move to the waitSpot
-                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
+                Move(velocity * Time.deltaTime);
 
                 //Look where the enemy is going
                 transform.LookAt(new Vector3((transform.position + velocity).x, transform.position.y, (transform.position + velocity).z));
@@ -163,7 +165,7 @@ public class EnemyMovementBehavior : MonoBehaviour
             velocity = moveDirection * _moveSpeed * Time.deltaTime;
 
             //Move sideways based on that vector
-            _rigidbody.MovePosition(transform.position + velocity);
+            Move(velocity);
 
             //Increment time on first loop
             _timeOnSecondLoop += Time.deltaTime;
@@ -193,7 +195,7 @@ public class EnemyMovementBehavior : MonoBehaviour
                 velocity += steeringForce;
 
                 //Move to the exit
-                _rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
+                Move(velocity * Time.deltaTime);
             }
             //If on the exit spot
             else
@@ -206,5 +208,16 @@ public class EnemyMovementBehavior : MonoBehaviour
             
         }
         _animator?.SetFloat("speed", _rigidbody.velocity.normalized.magnitude);
+    }
+
+    private void Move(Vector3 change)
+    {
+        //If the plane is dead
+        if (_health.Health <= 0)
+            //Fall downwards
+            _rigidbody.MovePosition(new Vector3(transform.position.x, transform.position.y - 0.15f, transform.position.z) + change);
+        else
+            //Move with the change
+            _rigidbody.MovePosition(transform.position + change);
     }
 }
