@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _despawnTime: 2
+  _impactVFX: {fileID: 7958224826970841550, guid: 8b2acaf2a54e67b49990517410e014b9,
+    type: 3}
   _hostTag: 
   _piercingBullet: 0
   _rotate: 20
