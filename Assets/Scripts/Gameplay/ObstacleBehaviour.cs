@@ -18,7 +18,7 @@ public class ObstacleBehaviour : MonoBehaviour
     {
         //Grab the health behaviour attached to the object
         HealthBehaviour health = other.GetComponent<HealthBehaviour>();
-        if (!other.CompareTag("Obstacle") || !other.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Player"))
         {
             //If the health behaviour isn't null, deal damage
             if (health)
