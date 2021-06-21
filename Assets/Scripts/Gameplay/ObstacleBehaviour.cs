@@ -14,11 +14,11 @@ public class ObstacleBehaviour : MonoBehaviour
         set { _damage = value; }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         //Grab the health behaviour attached to the object
-        HealthBehaviour health = collision.collider.GetComponent<HealthBehaviour>();
-        if (!collision.collider.gameObject.CompareTag("Obstacle") || !collision.collider.gameObject.CompareTag("Bullet") || !collision.collider.gameObject.CompareTag("Item"))
+        HealthBehaviour health = other.GetComponent<HealthBehaviour>();
+        if (other.gameObject.CompareTag("Player"))
         {
             //If the health behaviour isn't null, deal damage
             if (health)

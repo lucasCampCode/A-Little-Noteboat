@@ -36,7 +36,7 @@ public class ObstacleSpawnerBehaviour : MonoBehaviour
         {
             Quaternion rotation = new Quaternion(0, 180, 0, 0);
             //create a game object from prefab
-            GameObject item = Instantiate(_obstacles[rng], randomPos, rotation);
+            Instantiate(_obstacles[rng], randomPos, rotation);
             _timeSinceSpawn = 0;
         }
     }
