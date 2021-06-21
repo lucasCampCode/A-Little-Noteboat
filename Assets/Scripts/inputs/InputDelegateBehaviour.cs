@@ -77,15 +77,9 @@ public class InputDelegateBehaviour : MonoBehaviour
                     emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
                     emitter.Fire(emitter.transform.forward * _playerManager.FireForce, _playerManager.BulletScale);//apply the bullets movement
                 }
+                _shootSound.Play();
                 _time = 0;//reset time
             }
-            foreach (BulletEmitterBehaviour emitter in _tripleEmitters)//for each Triple emitter
-            {
-                emitter.Bullet.GetComponent<BulletBehaviour>().Damage = _playerManager.Damage;//apply damage value to the bullet
-                emitter.Fire(emitter.transform.forward * _playerManager.FireForce, _playerManager.BulletScale);//apply the bullets movement
-            }
-            _shootSound.Play();
-            _time = 0;//reset time
         }
         else
             _playerMovement.Move(new Vector2(0,0));
