@@ -12,6 +12,8 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private float _despawnTime;
     [SerializeField]
+    private GameObject _impactVFX;
+    [SerializeField]
     private string _hostTag;
     [SerializeField]
     private bool _piercingBullet;
@@ -75,6 +77,7 @@ public class BulletBehaviour : MonoBehaviour
         _damage--;
         if (_damage <= 0)
         {
+
             //destroys the bullet
             Destroy(gameObject);
         }
@@ -84,6 +87,7 @@ public class BulletBehaviour : MonoBehaviour
 
         if (health)
             health.TakeDamage(Damage);
+        Instantiate(_impactVFX, transform.position, new Quaternion());
         //destroys the bullet
         Destroy(gameObject);
     }
