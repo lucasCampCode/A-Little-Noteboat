@@ -12,9 +12,14 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private float _despawnTime;
     [SerializeField]
+    private GameObject _impactVFX;
+    [SerializeField]
     private string _hostTag;
     [SerializeField]
     private bool _piercingBullet;
+    [SerializeField]
+    private float _rotate;
+
     public bool PiercingBullet 
     { 
         get { return _piercingBullet; } 
@@ -48,6 +53,11 @@ public class BulletBehaviour : MonoBehaviour
         Destroy(gameObject, _despawnTime);
     }
 
+    private void Update()
+    {
+        transform.Rotate(_rotate, _rotate, _rotate);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //Grab the health behaviour attached to the object
@@ -67,6 +77,7 @@ public class BulletBehaviour : MonoBehaviour
         _damage--;
         if (_damage <= 0)
         {
+
             //destroys the bullet
             Destroy(gameObject);
         }
@@ -76,6 +87,7 @@ public class BulletBehaviour : MonoBehaviour
 
         if (health)
             health.TakeDamage(Damage);
+        Instantiate(_impactVFX, transform.position, new Quaternion());
         //destroys the bullet
         Destroy(gameObject);
     }

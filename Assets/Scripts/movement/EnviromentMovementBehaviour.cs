@@ -22,4 +22,8 @@ public class EnviromentMovementBehaviour : MonoBehaviour
             //If true, the object is teleported to the given _telePos's z position
             transform.position = new Vector3(transform.position.x, transform.position.y, _telePosZ);
     }
+    public void setSpeed(float value)
+    {
+        _speed = value;
+    }
 }
