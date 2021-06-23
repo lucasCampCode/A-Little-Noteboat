@@ -1,5 +1,8 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
+--- !u!1107 &-3008029184446327623
+=======
 --- !u!1102 &-8461540199421653338
 AnimatorState:
   serializedVersion: 5
@@ -27,6 +30,7 @@ AnimatorState:
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1107 &-5974985197550139404
+>>>>>>> main-mkii
 AnimatorStateMachine:
   serializedVersion: 5
   m_ObjectHideFlags: 1
@@ -34,10 +38,14 @@ AnimatorStateMachine:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: New Layer
+<<<<<<< HEAD
+  m_ChildStates: []
+=======
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2372665376514937500}
     m_Position: {x: 412, y: 107, z: 0}
+>>>>>>> main-mkii
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -47,6 +55,9 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+<<<<<<< HEAD
+  m_DefaultState: {fileID: 0}
+=======
   m_DefaultState: {fileID: -2372665376514937500}
 --- !u!1102 &-2372665376514937500
 AnimatorState:
@@ -75,6 +86,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+>>>>>>> main-mkii
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -87,7 +99,11 @@ AnimatorController:
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: New Layer
+<<<<<<< HEAD
+    m_StateMachine: {fileID: -3008029184446327623}
+=======
     m_StateMachine: {fileID: -5974985197550139404}
+>>>>>>> main-mkii
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
