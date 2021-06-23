@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _hostTag: 
 --- !u!65 &8801815402241319887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70,7 +69,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9223325765870175519}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.028378543, y: 0.020859208, z: 0.0082806535}
@@ -175,7 +174,7 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: 48d6ddeb39d458942a095b4ca3dffe89,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4859341175355412893, guid: 48d6ddeb39d458942a095b4ca3dffe89,
         type: 3}
