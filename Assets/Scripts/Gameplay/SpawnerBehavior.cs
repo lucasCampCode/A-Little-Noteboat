@@ -25,7 +25,7 @@ public class SpawnerBehavior : MonoBehaviour
     [Tooltip("The time between spawns during waves")]
     [SerializeField] private float _waveSpawnTime = 1;
     [Tooltip("The time between waves of enemies")]
-    [SerializeField] private float _timeBetweenWaves;
+    [SerializeField] private float _timeBetweenWaves = 10;
     [Tooltip("How long the spawner will spawn enemies more often")]
     [SerializeField] private float _waveDuration = 5;
     [Tooltip("Whether or not objects will be spawned")]
