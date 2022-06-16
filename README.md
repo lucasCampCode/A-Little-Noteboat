@@ -17,7 +17,7 @@ Captain Stephen Nelly, captain of the Little NoteBoat, is the target of a massiv
 Created with a team of three artists and three programmers.
   - Art:
     - [jdgameart](https://jdgameart.itch.io/): Obstacles, Powerups, Projectiles
-    - Brittany Thibodeaux: Player Boat, Level Design, Environment Assets, Environment Asset Animations, Projectiles, River Shader
+    - [Brittany Thibodeaux](https://www.artstation.com/bthibo96): Player Boat, Level Design, Environment Assets, Environment Asset Animations, Projectiles, River Shader
     - [John-David Romero](https://www.artstation.com/johndavid12187): Enemy Planes, Player Boat, Animation Integration, UI, Font, Credits Scene
 
   - Programming:
